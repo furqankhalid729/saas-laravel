@@ -5,8 +5,7 @@ import { MdOutlineSignalCellularAlt } from "react-icons/md";
 import { MdOutlineDomainVerification } from "react-icons/md"
 import { MdOutlineAttachEmail } from "react-icons/md";
 import { TbApiApp } from "react-icons/tb";
-import { NavLink } from 'react-router-dom';
-// import logoImg from "../../assets/attelo-brand-name.jpeg"
+import { Link } from '@inertiajs/react';
 import General from './SettingsTabs/General';
 import Plans from './SettingsTabs/Plans';
 import Domain from './SettingsTabs/Domain';
@@ -27,15 +26,15 @@ const Settings = () => {
   return (
     <div className='min-w-full min-h-screen bg-[#e4e4e4]  my-3 rounded-2xl p-4 shadow-2xl'>
       {/* Close btn Navlink */}
-      <NavLink to="/admin/dashboard" className="flex justify-end items-center p-1 w-full">
+      <Link href="/admin/dashboard" className="flex justify-end items-center p-1 w-full">
         <MdClose className="bg-[#C5C5C5] p-1 rounded text-[20px]" />
-      </NavLink>
+      </Link>
       <div className='w-full md:w-[80%] mx-auto my-2 flex flex-col lg:flex-row gap-[50px] justify-between'>
         {/* left sidebar brands */}
         <div className='overflow-hidden border border-[#808080] rounded-xl bg-white min-w-[270px] h-[400px]'>
           {/* top brand logo div */}
           <div className='flex gap-2 items-center px-10 py-3 bg-[#f7f7f7] border-b-[0.5px] border-[#808080]'>
-            {/* <img src={logoImg} alt="logoImg" className='w-[24px] h-[24px] rounded' /> */}
+            <img src="/storage/Images/attelo-brand-name.jpeg" alt="logoImg" className='w-[24px] h-[24px] rounded' />
             <div className='flex gap-1 flex-col'>
               <h1 className='font-[500] text-[16px] leading-[19px]'>ATELLO</h1>
               <p className='font-[400] text-[10px] leading-[12px] text-[#808080]'>Developers Company</p>

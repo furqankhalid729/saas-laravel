@@ -1,7 +1,6 @@
 import React from 'react'
 import { BiSolidMessageRoundedDetail } from "react-icons/bi";
 import { BiSearch } from "react-icons/bi";
-// import profileImg from "../../../assets/Admin/ProfileImage.jpeg"
 
 let messagesData = [
     { name: "Michael", message: "You have a new message", Time: "1h" },
@@ -38,7 +37,7 @@ const ChatMessages = () => {
             <div className='overflow-y-scroll h-[600px]'>
                 {messagesData.map((data, index) => (
                     <div key={index} className='w-full flex justify-between items-end gap-3 px-5 py-3 border-b-[0.5px] border-[#808080]'>
-                        {/* <img src={profileImg} alt="profileImg" className='w-[40px] h-[40px] rounded-full' /> */}
+                        <img src="/storage/Images/Admin/ProfileImage.jpeg" alt="profileImg" className='w-[40px] h-[40px] rounded-full' />
                         <div className='w-full'>
                             <h6 className='font-[500] text-[15px] leading-[18px]'>{data.name}</h6>
                             <p className='font-[300] text-[13px] leading-[15px] text-[#808080]'>{data.message}</p>

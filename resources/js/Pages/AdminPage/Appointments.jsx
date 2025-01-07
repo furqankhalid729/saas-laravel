@@ -1,5 +1,6 @@
 import React from 'react'
 import AppointmentsTable from '../../Components/AdminComponents/TableComponents/AppointmentsTable/AppointmentsTable'
+import AdminLayout from '../../Layout/AdminLayout';
 
 const Appointments = () => {
   return (
@@ -10,5 +11,5 @@ const Appointments = () => {
     </div>
   )
 }
-
+Appointments.layout = page => <AdminLayout children={page} title="Appointments" />
 export default Appointments

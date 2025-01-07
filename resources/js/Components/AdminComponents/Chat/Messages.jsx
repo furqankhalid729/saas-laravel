@@ -2,20 +2,19 @@ import React from 'react'
 import { TbBrandGooglePhotos } from "react-icons/tb";
 import { HiOutlineDocumentPlus } from "react-icons/hi2";
 import { BiLike } from "react-icons/bi";
-// import profileImg from "../../../assets/Admin/ProfileImage.jpeg"
 
 const Messages = () => {
     return (
         <div className='w-full bg-white rounded-md shadow-md h-[800px] flex flex-col justify-between'>
             {/* section Header */}
             <div className='flex gap-2 items-center p-3 border-b border-[#808080]'>
-                {/* <img src={profileImg} alt="profileImg" className='w-[40px] h-[40px] rounded-full' /> */}
+                <img src="/storage/Images/Admin/ProfileImage.jpeg" alt="profileImg" className='w-[40px] h-[40px] rounded-full' />
                 <h6 className='font-[500] text-[20px] leading-[24px]'>Michael</h6>
             </div>
             <div className='flex flex-col justify-between h-[90%]'>
                 {/* name and img */}
                 <div className='flex flex-col items-center gap-3 p-5'>
-                    {/* <img src={profileImg} alt="profileImg" className='w-[90px] h-[90px] rounded-full' /> */}
+                    <img src="/storage/Images/Admin/ProfileImage.jpeg" alt="profileImg" className='w-[90px] h-[90px] rounded-full' />
                     <h1 className='font-[500] text-[32px] leading-[38px]'>Michael</h1>
                 </div>
                 <p className='font-[400] text-[10px] leading-[12px] text-[#808080] text-center p-5'>01:00</p>

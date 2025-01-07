@@ -1,5 +1,6 @@
 import React from 'react'
 import DocumentsTable from '../../components/AdminComponents/TableComponents/DocumentsTable'
+import AdminLayout from '../../layout/AdminLayout';
 
 const Documents = () => {
     return (
@@ -14,5 +15,5 @@ const Documents = () => {
         </div>
     )
 }
-
+Documents.layout = page => <AdminLayout children={page} title="Documents" />
 export default Documents

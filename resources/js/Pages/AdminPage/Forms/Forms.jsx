@@ -1,7 +1,8 @@
 import React from 'react'
 import { FiPlusCircle } from "react-icons/fi";
-import FormsCard from "../../components/AdminComponents/Forms/FormsCard"
-import { NavLink } from 'react-router-dom';
+import FormsCard from "../../../components/AdminComponents/Forms/FormsCard"
+import { Link } from '@inertiajs/react';
+import AdminLayout from '../../../layout/AdminLayout';
 
 const Forms = () => {
     return (
@@ -13,10 +14,10 @@ const Forms = () => {
                         <h1 className='font-[700] text-[48px] leading-[57px]'>Default Forms</h1>
                         <h6 className='font-[400] text-[28px] leading-[33px] text-[#808080]'>Manage your default forms</h6>
                     </div>
-                    <NavLink to="/admin/forms/add-new-form-field" className='font-[500] text-[20px] leading-[24px] bg-black text-white px-4 py-2 rounded-lg flex items-center gap-1'>
+                    <Link href="/admin/forms/add-new-form-field" className='font-[500] text-[20px] leading-[24px] bg-black text-white px-4 py-2 rounded-lg flex items-center gap-1'>
                         <FiPlusCircle />
                         Add new forms
-                    </NavLink>
+                    </Link>
                 </div>
                 {/* FormsCard */}
                 <FormsCard />
@@ -24,5 +25,5 @@ const Forms = () => {
         </div>
     )
 }
-
+Forms.layout = page => <AdminLayout children={page} title="Forms" />
 export default Forms

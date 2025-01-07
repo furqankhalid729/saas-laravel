@@ -1,6 +1,6 @@
 import React from 'react'
 import { GoPlusCircle } from "react-icons/go";
-import { NavLink } from 'react-router-dom';
+import { Link } from '@inertiajs/react';
 
 let EmpList = [
     { Id: "01", name: "Adam Smith", Emial: "adamsmith9@gmail.com", PhoneNo: "+1-923-466-543", JobTitle: "Chief Editor", EmpType: "Employment" },
@@ -18,9 +18,9 @@ const EmployeeListTable = () => {
                 {/* heading */}
                 <div className='flex gap-4 justify-between items-center h-[60px] text-nowrap'>
                     <h1 className='font-[700] text-[26px] sm:text-[36px] leading-[44px] px-2'>Employee List</h1>
-                    <NavLink to="/admin/employee-list/add-new-employee" className='flex items-center gap-1 text-white bg-black px-3 py-1 rounded-lg'>
+                    <Link href="/admin/employee-list/add-new-employee" className='flex items-center gap-1 text-white bg-black px-3 py-1 rounded-lg'>
                         <GoPlusCircle /> Add new Employee
-                    </NavLink>
+                    </Link>
                 </div>
                 <div>
                     {/* table */}

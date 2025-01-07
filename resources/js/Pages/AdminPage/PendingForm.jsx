@@ -1,5 +1,6 @@
 import React from 'react'
-import PendingFormTable from '../../components/AdminComponents/TableComponents/PendingFormTable'
+import PendingFormTable from '../../components/AdminComponents/TableComponents/PendingFormTable';
+import AdminLayout from '../../layout/AdminLayout';
 
 const PendingForm = () => {
     return (
@@ -10,5 +11,5 @@ const PendingForm = () => {
         </div>
     )
 }
-
+PendingForm.layout = page => <AdminLayout children={page} title="Pending Form" />
 export default PendingForm

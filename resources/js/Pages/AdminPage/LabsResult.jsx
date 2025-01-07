@@ -1,6 +1,7 @@
 import React from 'react'
 import LabsResultTable from '../../components/AdminComponents/TableComponents/LabsResultTable'
 import VaccineTable from '../../components/AdminComponents/TableComponents/VaccineTable'
+import AdminLayout from '../../layout/AdminLayout';
 
 const LabsResult = () => {
     return (
@@ -15,5 +16,5 @@ const LabsResult = () => {
         </div>
     )
 }
-
+LabsResult.layout = page => <AdminLayout children={page} title="Labs Result" />
 export default LabsResult

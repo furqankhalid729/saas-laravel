@@ -1,6 +1,8 @@
 import React from 'react'
 import { FaAngleRight } from "react-icons/fa6";
 import CollabDocumentsTable from '../../components/AdminComponents/TableComponents/CollabDocumentsTable';
+import AdminLayout from '../../layout/AdminLayout';
+
 
 const CollabDocuments = () => {
     return (
@@ -19,5 +21,5 @@ const CollabDocuments = () => {
         </div>
     )
 }
-
+CollabDocuments.layout = page => <AdminLayout children={page} title="CollabDocuments" />
 export default CollabDocuments

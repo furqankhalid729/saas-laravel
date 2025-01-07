@@ -19,7 +19,7 @@ const AdminHeader = ({ onClickSideBar, SidebarOpen }) => {
                 {/* Search part */}
                 <div className='hidden sm:flex h-[50px] lg:w-[440px] items-center justify-center gap-4 text-white bg-[#3A3A3A] px-2 py-1 rounded-md'>
                     <FiSearch className='text-white text-[24px]' />
-                    <input type="text" placeholder='Search...' className='bg-[#3A3A3A] font-[400] text-[12px] leading-[15px] w-full' />
+                    <input type="text" placeholder='Search...' className='bg-[#3A3A3A] outline-none font-[400] text-[12px] leading-[15px] w-full' />
                     <div className='w-[44px] h-[36px] flex items-center justify-center bg-[#B8B8B826] rounded-md'>
                         <LuCalendarDays className='text-[20px] text-white' />
                     </div>

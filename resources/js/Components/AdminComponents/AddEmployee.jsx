@@ -6,7 +6,7 @@ const AddEmployee = () => {
         <div className='w-full bg-white rounded-xl shadow-2xl '>
             <div className='w-[93%] h-[300px] mx-auto py-5 flex flex-col gap-6'>
                 <div className='flex gap-2 items-center'>
-                    {/* <img src={NewEmpImage} alt="NewEmpImage"  className='w-[70px] h-[70px] rounded-full'/> */}
+                    <img src="/storage/Images/Admin/ProfileImage.jpeg" alt="NewEmpImage"  className='w-[70px] h-[70px] rounded-full'/>
                     <span className='font-[400]'>
                         <h6 className='text-[20px] leading-[24px]'>Adam Smith</h6>
                         <p className='text-[14px] leading-[16px] text-[#808080]'>Manager Director</p>

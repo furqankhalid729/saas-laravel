@@ -1,6 +1,7 @@
 import React from 'react'
 import PaymentCards from '../../components/AdminComponents/PaymentCards'
-import RecentTransactionTable from '../../components/AdminComponents/TableComponents/RecentTransactionTable'
+import RecentTransactionTable from '../../components/AdminComponents/TableComponents/RecentTransactionTable';
+import AdminLayout from '../../layout/AdminLayout';
 
 const Payments = () => {
     return (
@@ -14,5 +15,5 @@ const Payments = () => {
         </div>
     )
 }
-
+Payments.layout = page => <AdminLayout children={page} title="Payments" />
 export default Payments
