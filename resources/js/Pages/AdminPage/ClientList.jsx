@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import AdminLayout from "../../Layout/AdminLayout";
 import ClientListTable from '../../components/AdminComponents/TableComponents/ClientListTable'
 
 const ClientList = () => {
@@ -29,5 +29,6 @@ const ClientList = () => {
         </div>
     )
 }
+ClientList.layout = page => <AdminLayout children={page} title="Client List" />
 
 export default ClientList

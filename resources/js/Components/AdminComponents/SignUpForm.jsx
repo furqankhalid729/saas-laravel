@@ -1,5 +1,4 @@
 import React from 'react'
-// import ProfilePic from "../../assets/Admin/ProfilePic.png"
 
 const SignUpForm = () => {
     return (
@@ -7,7 +6,7 @@ const SignUpForm = () => {
             <div>
                 <p className='mb-5 font-[500] text-[20px] leading-[24px]'>Workspace logo</p>
                 <div className='mb-10 flex gap-3 items-center'>
-                    {/* <img src={ProfilePic} alt="ProfilePic" className='w-[80px] h-[80px] rounded-xl' /> */}
+                    <img src="/storage/images/Admin/ProfilePic.png" alt="ProfilePic" className='w-[80px] h-[80px] rounded-xl' />
                     {/* upload img button */}
                     <div className='flex flex-col items-start gap-2'>
                         <button className='border border-[#808080] rounded-xl px-3 py-1'>Upload image</button>

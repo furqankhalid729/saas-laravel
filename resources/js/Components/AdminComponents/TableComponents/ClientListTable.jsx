@@ -1,5 +1,6 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link } from '@inertiajs/react';
+
 
 let ClientListData = [
     { Id: "01", name: "Adam Smith", Email: "info@warnersmith.com", PhoneNo: "+1-923-466-543", Country: "Canada", Status: "Paid", ExamStatus: "InProgress", Color: "text-[#1E5600]" },
@@ -43,9 +44,8 @@ const ClientListTable = () => {
                             <td className={`w-[10%] text-nowrap px-3 text-center ${data.Color}`}>{data.Status}</td>
                             <td className='w-[10%] text-nowrap px-3 text-center'>{data.ExamStatus}</td>
                             <td className='w-[10%] text-nowrap px-3 text-[#231E20] underline'>
-                                <NavLink to="/admin/client-list/client-form" >View Detail</NavLink>
+                                <Link href="/admin/client-list/client-form" >View Detail</Link>
                             </td>
-
                         </tr>
                     ))}
                 </tbody>

@@ -3,7 +3,7 @@ import AdminHeader from "../Components/AdminComponents/AdminHeader";
 import AdminSidebar from "../Components/AdminComponents/AdminSidebar";
 import { useState } from 'react';
 
-export default function UserLayout({ title, children }) {
+export default function AdminLayout({ title, children }) {
 
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const displaySideBar = () => {

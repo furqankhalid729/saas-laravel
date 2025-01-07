@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-// import ProfileImage from "../../assets/Admin/ProfileImage.jpeg"
 
 const Profile = ({ currentPage, setCurrentPage }) => {
     console.log(currentPage);
@@ -16,7 +15,7 @@ const Profile = ({ currentPage, setCurrentPage }) => {
                 <span className='bg-[#ded7d7] px-1 rounded-full'>#1002</span>
                 {/* Profile pic and name */}
                 <div className='mb-6 flex flex-col justify-center items-center gap-2'>
-                    {/* <img src={ProfileImage} alt="profileImage" className='w-[120px] h-[120px] rounded-full bg-cover' /> */}
+                    <img src="/storage/Images/Admin/ProfileImage.jpeg" alt="profileImage" className='w-[120px] h-[120px] rounded-full bg-cover' />
                     <h1 className='font-[600] text-[20px] leading-[24px]'>Adam Smith</h1>
                 </div>
                 {/* Details of profile */}

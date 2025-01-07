@@ -4,7 +4,7 @@ import { GoPlusCircle } from "react-icons/go";
 import { FaRegEdit } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 import { RiDeleteBinLine } from "react-icons/ri";
-import { NavLink } from 'react-router-dom';
+import { Link } from '@inertiajs/react';
 
 let FormData = [
     { Form: "Chest X-ray", Describe: "This is chest x-ray form", Status: "Fulfilled" },
@@ -26,9 +26,9 @@ const FormsTable = () => {
                             All
                             <span><FaAngleDown /></span>
                         </p>
-                        <NavLink to="/admin/client-list/client-form/new-forms" className='flex items-center gap-1 text-white bg-black px-3 py-1 rounded-lg'>
+                        <Link href="/admin/client-list/client-form/new-forms" className='flex items-center gap-1 text-white bg-black px-3 py-1 rounded-lg'>
                             <GoPlusCircle /> Request new forms
-                        </NavLink>
+                        </Link>
                     </div>
                 </div>
                 {/* table */}

@@ -2,9 +2,7 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { subDays, subWeeks, subMonths, startOfWeek, endOfWeek } from "date-fns";
-// import brandLogo from "../../assets/attelo-brand-name.jpeg"
 import DashboardCards from '../../components/AdminComponents/DashboardCards'
-import AppointmentsTable from '../../Components/AdminComponents/TableComponents/AppointmentsTable/AppointmentsTable'
 import ChartDoughnut from '../../components/AdminComponents/ChartDoughnut'
 import RecentUpdatesTable from '../../components/AdminComponents/TableComponents/RecentUpdatesTable'
 import AdminLayout from "../../Layout/AdminLayout";
@@ -39,7 +37,7 @@ const AdminDashboard = () => {
                 <div className='flex flex-col sm:flex-row gap-3 justify-between items-start sm:items-center'>
                     {/* Title logo */}
                     <div className='flex items-center gap-2'>
-                        {/* <img src={brandLogo} alt="brandLogo" className='w-[75px] h-[75px] rounded-xl' /> */}
+                        <img src="/storage/Images/attelo-brand-name.jpeg" alt="brandLogo" className='w-[75px] h-[75px] rounded-xl' />
                         <div className='flex flex-col gap-1'>
                             <h1 className='font-[700] text-[32px] leading-[38px]'>ATELLO</h1>
                             <p className='text-[#808080] font-[400] text-[13px] leading-[16px]'>Developers Company</p>
@@ -86,6 +84,6 @@ const AdminDashboard = () => {
     )
 }
 
-AdminDashboard.layout = page => <AdminLayout children={page} title="Car Details" />
+AdminDashboard.layout = page => <AdminLayout children={page} title="Admin Dashboard" />
 
 export default AdminDashboard
