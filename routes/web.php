@@ -97,3 +97,73 @@ Route::get('/admin/settings', function () {
 Route::get('/admin/labs-result', function () {
     return Inertia::render('AdminPage/LabsResult');
 });
+
+
+
+// User side
+
+// User Screens
+
+
+Route::get('/user/sign-up', function () {
+    return Inertia::render('UserPage/UserScreen/SignUpScreen');
+});
+
+Route::get('/user/text-code', function () {
+    return Inertia::render('UserPage/UserScreen/TextCodeScreen');
+});
+
+Route::get('/user/enter-code', function () {
+    return Inertia::render('UserPage/UserScreen/EnterCodeScreen');
+});
+
+Route::get('/user/login', function () {
+    return Inertia::render('UserPage/UserScreen/LoginScreen');
+});
+
+Route::get('/user/upload-photo', function () {
+    return Inertia::render('UserPage/UserScreen/UploadPhotoScreen');
+});
+
+
+// User Pages
+
+Route::get('/user/intake-form', function () {
+    return Inertia::render('UserPage/Forms/UserIntakeForm');
+});
+
+Route::get('/user/medical-info-form', function () {
+    return Inertia::render('UserPage/Forms/MedicalInfoForm');
+});
+
+Route::get('/user/dashboard', function () {
+    return Inertia::render('UserPage/UserDashboard');
+});
+
+Route::get('/user/forms', function () {
+    return Inertia::render('UserPage/RequestedForm');
+});
+
+Route::get('/user/appointment', function () {
+    return Inertia::render('UserPage/Appointment');
+});
+
+Route::get('/user/appointment/book-new-appointment', function () {
+    return Inertia::render('UserPage/BookNew Appointment/NewAppointment');
+});
+
+Route::get('/user/labs-result', function () {
+    return Inertia::render('UserPage/LabsResult');
+});
+
+Route::get('/user/family-members', function () {
+    return Inertia::render('UserPage/OtherMembers');
+});
+
+Route::get('/user/invoices', function () {
+    return Inertia::render('UserPage/Invoices');
+});
+
+Route::get('/user/add-members', function () {
+    return Inertia::render('UserPage/AddMembers');
+});
