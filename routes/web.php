@@ -167,3 +167,53 @@ Route::get('/user/invoices', function () {
 Route::get('/user/add-members', function () {
     return Inertia::render('UserPage/AddMembers');
 });
+
+Route::get('/user/requested-form/edit-form', function () {
+    return Inertia::render('UserPage/EditForm');
+});
+
+
+
+// Clinic Side
+
+// Clinic Screens
+
+
+Route::get('/clinic/login', function () {
+    return Inertia::render('ClinicPage/ClinicScreens/LoginScreen');
+});
+
+Route::get('/clinic/text-code', function () {
+    return Inertia::render('ClinicPage/ClinicScreens/TextCodeScreen');
+});
+
+Route::get('/clinic/enter-code', function () {
+    return Inertia::render('ClinicPage/ClinicScreens/EnterCodeScreen');
+});
+
+// clinic pages
+
+
+Route::get('/clinic/dashboard', function () {
+    return Inertia::render('ClinicPage/ClinicDashboard');
+});
+
+Route::get('/clinic/clients', function () {
+    return Inertia::render('ClinicPage/Clients/Clients');
+});
+
+Route::get('/clinic/clients/clients-view', function () {
+    return Inertia::render('ClinicPage/Clients/ClientsView');
+});
+
+Route::get('/clinic/payments', function () {
+    return Inertia::render('ClinicPage/Payments');
+});
+
+Route::get('/clinic/forms', function () {
+    return Inertia::render('ClinicPage/Forms');
+});
+
+Route::get('/clinic/add-new-form-field', function () {
+    return Inertia::render('ClinicPage/FormsTabs/AddNewField');
+});
