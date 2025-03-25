@@ -3,37 +3,33 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Enums\UserInertiaViews;
 use Inertia\Inertia;
 
 class UserAuthController extends Controller
 {
-    public function showSignUp(){
-
-        return Inertia::render('UserPage/UserScreen/SignUpScreen');
-
+    public function showSignUp()
+    {
+        return Inertia::render(UserInertiaViews::USER_SIGN_UP->value);
     }
 
-    public function showTextCode(){
-
-        return Inertia::render('UserPage/UserScreen/TextCodeScreen');
-
+    public function showTextCode()
+    {
+        return Inertia::render(UserInertiaViews::USER_TEXT_CODE->value);
     }
 
-    public function showEnterCode(){
-
-        return Inertia::render('UserPage/UserScreen/EnterCodeScreen');
-
+    public function showEnterCode()
+    {
+        return Inertia::render(UserInertiaViews::USER_ENTER_CODE->value);
     }
 
-    public function showLogin(){
-
-        return Inertia::render('UserPage/UserScreen/LoginScreen');
+    public function showLogin()
+    {
+        return Inertia::render(UserInertiaViews::USER_LOGIN->value);
     }
 
-    public function showUploadPhoto(){
-
-        return Inertia::render('UserPage/UserScreen/UploadPhotoScreen');
-
+    public function showUploadPhoto()
+    {
+        return Inertia::render(UserInertiaViews::USER_UPLOAD_PHOTO->value);
     }
 }
