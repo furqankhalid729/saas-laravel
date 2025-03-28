@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia; 
+use Inertia\Inertia;
 use App\Http\Controllers\Agency\AgencyAuthController;
 use App\Http\Controllers\Agency\AgencyDashboardController;
 use App\Http\Controllers\Agency\AgencyClientController;
@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\AdminFormController;
+
 Route::get('/', function () {
     return Inertia::render('Test');
 });
@@ -37,7 +38,8 @@ Route::get('/test-1', function () {
 
 // Agency side
 
-Route::prefix('admin')->name('admin.')->group(function () {
+// Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'user.type:agency'])->group(function () {
 
     // Authentication Routes
     Route::get('/sign-up', [AgencyAuthController::class, 'showSignUpForm'])->name('signup');
@@ -94,8 +96,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 
 // User side
-Route::prefix('user')->name('user_')->group(function () {
-
+// Route::prefix('user')->name('user_')->group(function () {
+Route::prefix('user')->name('user_')->middleware(['auth', 'user.type:user'])->group(function () {
     // Authentication Routes
     Route::controller(UserAuthController::class)->group(function () {
         Route::get('/sign-up', 'showSignUp')->name('signup');
@@ -137,8 +139,8 @@ Route::prefix('user')->name('user_')->group(function () {
 
 
 // Clinic Side
-Route::prefix('clinic')->name('clinic_')->group(function () {
-
+// Route::prefix('clinic')->name('clinic_')->group(function () {
+Route::prefix('clinic')->name('clinic_')->middleware(['auth', 'user.type:superadmin'])->group(function () {
     // Authentication Routes
     Route::controller(AdminAuthController::class)->group(function () {
         Route::get('/login', 'showLogin')->name('login');
@@ -165,5 +167,3 @@ Route::prefix('clinic')->name('clinic_')->group(function () {
     });
 });
 // Clinic Screens
-
-
