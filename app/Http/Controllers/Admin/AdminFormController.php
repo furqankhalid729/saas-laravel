@@ -3,26 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Enums\AdminInertiaViews;
 use Inertia\Inertia;
 
 class AdminFormController extends Controller
 {
-    public function viewForms(){
-
-        return Inertia::render('AdminPage/Forms/Forms');
-
+    public function showForms()
+    {
+        return Inertia::render(AdminInertiaViews::ADMIN_FORMS->value);
     }
 
-    public function showAddFormField(){
-
-        return Inertia::render('AdminPage/Forms/AddNewField');
-
-    }
-
-    public function viewPendingForms(){
-
-        return Inertia::render('AdminPage/PendingForm');
-
+    public function addNewFormField()
+    {
+        return Inertia::render(AdminInertiaViews::ADMIN_ADD_FORM_FIELD->value);
     }
 }

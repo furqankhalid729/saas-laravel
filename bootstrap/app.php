@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->web(append: [
             HandleInertiaRequests::class,
+            'user.type' => \App\Http\Middleware\CheckUserType::class,
         ]);
         $middleware->statefulApi();
     })
