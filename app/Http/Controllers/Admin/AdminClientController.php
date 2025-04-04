@@ -3,29 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Enums\AdminInertiaViews;
 use Inertia\Inertia;
 
 class AdminClientController extends Controller
 {
-    
-public function viewClientList(){
+    public function showClients()
+    {
+        return Inertia::render(AdminInertiaViews::ADMIN_CLIENTS_LIST->value);
+    }
 
-    return Inertia::render('AdminPage/ClientList');
-
-}
-
-
-public function showClientForm(){
-
-    return Inertia::render('AdminPage/Client/ClientForm');
-
-}
-
-public function viewNewClientForms(){
-
-    return Inertia::render('AdminPage/Forms/RequestNewForm');
-
-}
-
+    public function viewClientDetails()
+    {
+        return Inertia::render(AdminInertiaViews::ADMIN_CLIENT_DETAILS->value);
+    }
 }
