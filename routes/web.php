@@ -36,7 +36,6 @@ Route::get('/test-1', function () {
 
 
 // Admin side
-
 Route::prefix('admin')->name('admin.')->group(function () {
 
     // Authentication Routes
@@ -91,8 +90,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // Labs Result
     Route::get('/labs-result', [AdminLabResultController::class, 'viewLabResults'])->name('labs.result');
 });
-
-
 // User side
 Route::prefix('user')->name('user_')->group(function () {
 
@@ -134,8 +131,6 @@ Route::prefix('user')->name('user_')->group(function () {
     // Invoices
     Route::get('/invoices', [UserInvoiceController::class, 'showInvoices'])->name('invoices');
 });
-
-
 // Clinic Side
 Route::prefix('clinic')->name('clinic_')->group(function () {
 
