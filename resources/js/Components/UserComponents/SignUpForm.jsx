@@ -1,10 +1,10 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { router } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 
 const SignUpForm = () => {
-  // Define the validation schema with Yup
   const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
     email: Yup.string().email('Invalid email format').required('Email is required'),
@@ -16,7 +16,6 @@ const SignUpForm = () => {
     terms: Yup.boolean().oneOf([true], 'You must accept the terms and conditions')
   });
 
-  // Initial values for the form fields
   const initialValues = {
     name: '',
     email: '',
@@ -28,135 +27,104 @@ const SignUpForm = () => {
     terms: false
   };
 
-  // Function to handle form submission
-  const onSubmit = (values) => {
-    console.log('Form Data', values);
+  const onSubmit = (values, { setSubmitting }) => {
+    // Send data to your Laravel route via Inertia
+    router.post('/u/sign-up', values, {
+      onFinish: () => setSubmitting(false),
+    });
   };
+
   return (
     <div className='w-full h-full flex flex-col justify-center items-center py-[20px]'>
       <div className='flex flex-col gap-3 w-[90%]'>
         <h1 className='text-[50px] font-[600] leading-[60px]'>Create your account</h1>
         <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-          {({ errors, touched }) => (
+          {({ isSubmitting }) => (
             <Form>
-              {/* input detail */}
               <div className='grid md:grid-cols-2 grid-cols-1 gap-[20px]'>
                 {/* name */}
                 <div>
-                  <label htmlFor="name" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Name <span className='text-[#FF0000] text-[14px] leading-[16px] font-[400]'>*</span></label>
-                  <Field
-                    type="text"
-                    id="name"
-                    name="name"
-                    placeholder="Enter member name"
-                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
-                  />
-                  <ErrorMessage name="name" component="div" className="text-red-600 text-[14px] font-[400] leading-[17px]" />
+                  <label htmlFor="name" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Name <span className='text-[#FF0000]'>*</span></label>
+                  <Field type="text" id="name" name="name" placeholder="Enter member name"
+                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black" />
+                  <ErrorMessage name="name" component="div" className="text-red-600 text-[14px]" />
                 </div>
+
                 {/* email */}
                 <div>
-                  <label htmlFor="email" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Email <span className='text-[#FF0000] text-[14px] leading-[16px] font-[400]'>*</span></label>
-                  <Field
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="Enter member email"
-                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
-                  />
-                  <ErrorMessage name="email" component="div" className="text-red-600 text-[14px] font-[400] leading-[17px]" />
+                  <label htmlFor="email" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Email <span className='text-[#FF0000]'>*</span></label>
+                  <Field type="email" id="email" name="email" placeholder="Enter member email"
+                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black" />
+                  <ErrorMessage name="email" component="div" className="text-red-600 text-[14px]" />
                 </div>
-                {/* PhoneNo */}
+
+                {/* phoneNo */}
                 <div>
-                  <label htmlFor="phoneNo" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Phone no <span className='text-[#FF0000] text-[14px] leading-[16px] font-[400]'>*</span></label>
-                  <Field
-                    type="text"
-                    id="phoneNo"
-                    name="phoneNo"
-                    placeholder='Enter member phone no'
-                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
-                  />
-                  <ErrorMessage name="phoneNo" component="div" className="text-red-600 text-[14px] font-[400] leading-[17px]" />
+                  <label htmlFor="phoneNo" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Phone no <span className='text-[#FF0000]'>*</span></label>
+                  <Field type="text" id="phoneNo" name="phoneNo" placeholder="Enter member phone no"
+                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black" />
+                  <ErrorMessage name="phoneNo" component="div" className="text-red-600 text-[14px]" />
                 </div>
-                {/* Relation */}
+
+                {/* relation */}
                 <div>
-                  <label htmlFor="relation" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Relation <span className='text-[#FF0000] text-[14px] leading-[16px] font-[400]'>*</span></label>
-                  <Field
-                    type="text"
-                    id="relation"
-                    name="relation"
-                    placeholder="Enter member relation"
-                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
-                  />
-                  <ErrorMessage name="relation" component="div" className="text-red-600 text-[14px] font-[400] leading-[17px]" />
+                  <label htmlFor="relation" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Relation <span className='text-[#FF0000]'>*</span></label>
+                  <Field type="text" id="relation" name="relation" placeholder="Enter member relation"
+                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black" />
+                  <ErrorMessage name="relation" component="div" className="text-red-600 text-[14px]" />
                 </div>
-                {/* Age */}
+
+                {/* age */}
                 <div>
-                  <label htmlFor="age" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Age <span className='text-[#FF0000] text-[14px] leading-[16px] font-[400]'>*</span></label>
-                  <Field
-                    type="number"
-                    id="age"
-                    name="age"
-                    placeholder="Enter member age"
-                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
-                  />
-                  <ErrorMessage name="age" component="div" className="text-red-600 text-[14px] font-[400] leading-[17px]" />
+                  <label htmlFor="age" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Age <span className='text-[#FF0000]'>*</span></label>
+                  <Field type="number" id="age" name="age" placeholder="Enter member age"
+                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black" />
+                  <ErrorMessage name="age" component="div" className="text-red-600 text-[14px]" />
                 </div>
-                {/* Gender */}
+
+                {/* gender */}
                 <div>
-                  <label htmlFor="gender" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Gender <span className='text-[#FF0000] text-[14px] leading-[16px] font-[400]'>*</span></label>
-                  <Field
-                    as="select"
-                    id="gender"
-                    name="gender"
-                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
-                  >
+                  <label htmlFor="gender" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Gender <span className='text-[#FF0000]'>*</span></label>
+                  <Field as="select" id="gender" name="gender"
+                    className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black">
                     <option value="">Select Gender</option>
                     <option value="Female">Female</option>
                     <option value="Male">Male</option>
                     <option value="Other">Other</option>
                   </Field>
-                  <ErrorMessage name="gender" component="div" className="text-red-600 text-[14px] font-[400] leading-[17px]" />
+                  <ErrorMessage name="gender" component="div" className="text-red-600 text-[14px]" />
                 </div>
               </div>
+
               {/* address */}
               <div className='my-4'>
                 <label htmlFor="address" className="block text-sm font-medium text-gray-700">Address</label>
-                <Field
-                  type="text"
-                  id="address"
-                  name="address"
-                  placeholder='Enter member address'
-                  className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
-                />
+                <Field type="text" id="address" name="address" placeholder="Enter member address"
+                  className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black" />
                 <ErrorMessage name="address" component="div" className="text-red-600 text-sm" />
               </div>
-              {/* Checkout */}
-              <div className='my-4' >
-                <Field
-                  type="checkbox"
-                  id="terms"
-                  name="terms"
-                  className="mr-2 rounded border-gray-300 text-black focus:ring-black"
-                />
+
+              {/* terms */}
+              <div className='my-4'>
+                <Field type="checkbox" id="terms" name="terms" className="mr-2 rounded border-gray-300 text-black focus:ring-black" />
                 <label htmlFor="terms" className="text-sm text-gray-700">
                   I agree to all Terms, Privacy policy, and fees
                 </label>
                 <ErrorMessage name="terms" component="div" className="text-red-600 text-sm" />
               </div>
-              {/* Navlinks and submit Button*/}
+
+              {/* submit */}
               <div className='flex flex-col justify-center items-center gap-4'>
-                <Link href="/user/text-code">
-                  <button
-                    type="submit"
-                    className="w-[200px] md:w-[350px] bg-black text-white py-2 rounded-md hover:bg-gray-800 transition-all">
-                    Sign up
-                  </button>
-                </Link>
-                {/* already have an account */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-[200px] md:w-[350px] bg-black text-white py-2 rounded-md hover:bg-gray-800 transition-all">
+                  {isSubmitting ? 'Submitting...' : 'Sign up'}
+                </button>
+
                 <p className="mt-4 text-center text-sm text-gray-600">
-                  Already have an account? 
-                  <span> </span>
-                  <Link href="/user/login" className="text-red-500 underline">Log in</Link>
+                  Already have an account?{' '}
+                  <Link href="/u/login" className="text-red-500 underline">Log in</Link>
                 </p>
               </div>
             </Form>
@@ -164,7 +132,7 @@ const SignUpForm = () => {
         </Formik>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignUpForm
+export default SignUpForm;
