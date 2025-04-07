@@ -27,17 +27,7 @@ use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminPaymentController;
 use App\Http\Controllers\Admin\AdminFormController;
 
-Route::get('/', function () {
-    return Inertia::render('Test');
-});
-
-Route::get('/test-1', function () {
-    return Inertia::render('Test1');
-});
-
-
 // Agency side
-
 // Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'user.type:agency'])->group(function () {
 
@@ -107,7 +97,6 @@ Route::prefix('user')->name('user_')->middleware(['auth', 'user.type:user'])->gr
 
     // Dashboard
     Route::get('/dashboard', [UserDashboardController::class, 'showDashboard'])->name('dashboard');
-
     // Forms
     Route::prefix('forms')->name('forms_')->controller(UserFormController::class)->group(function () {
         Route::get('/intake-form', 'showIntakeForm')->name('intake_form');
