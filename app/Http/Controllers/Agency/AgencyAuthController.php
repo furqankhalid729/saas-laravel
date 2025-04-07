@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Agency;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use App\Enums\AgencyInertiaViews;
 use App\Models\Agency;
 use App\Models\User;
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
+use Illuminate\Support\Str;
 
 class AgencyAuthController extends Controller
 {
@@ -17,31 +18,20 @@ class AgencyAuthController extends Controller
         return Inertia::render(AgencyInertiaViews::Agency_Sign_Up->value);
     }
 
-    public function register()
+    public function register(Request $request)
     {
-        $agency = Agency::create([
-            'name' => 'Global Visa Experts',
-            'slug' => 'global-visa',
-            'user_id' => null,
-            'settings' => [
-                'theme' => 'default',
-                'currency' => 'USD'
-            ]
-        ]);
-
         $user = User::create([
-            'name' => 'Agency Admin',
-            'email' => 'admin@globalvisa.com',
-            'password' => Hash::make('agency123'),
+            'name' => $request->name,
+            'email' => $request->companyemail,
+            'password' => Hash::make($request->password),
             'role' => 'agency',
         ]);
 
-        $agency->user_id = $user->id;
-        $agency->save();
+        return response()->json(['success' => true]);
 
-        return response()->json(['message' => 'Agency created successfully']);
     }
-
+    
+  
 
 
 }

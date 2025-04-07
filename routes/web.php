@@ -25,15 +25,26 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminPaymentController;
+
 use App\Http\Controllers\Admin\AdminFormController;
+
+Route::get('/', function () {
+    return Inertia::render('Test');
+});
+
+Route::get('/test-1', function () {
+    return Inertia::render('Test1');
+});
+// Authentication Routes
+Route::get('/sign-up', [AgencyAuthController::class, 'showSignUpForm'])->name('signup');
+Route::post('/sign-up', [AgencyAuthController::class, 'register'])->name('signup_agency');
+
 
 // Agency side
 // Route::prefix('admin')->name('admin.')->group(function () {
-Route::prefix('admin')->name('admin.')->middleware(['auth', 'user.type:agency'])->group(function () {
+Route::prefix('admin')->name('admin_')->middleware(['auth', 'user.type:agency'])->group(function () {
 
-    // Authentication Routes
-    Route::get('/sign-up', [AgencyAuthController::class, 'showSignUpForm'])->name('signup');
-
+    
     // Dashboard
     Route::get('/dashboard', [AgencyDashboardController::class, 'viewDashboard'])->name('dashboard');
 
@@ -84,16 +95,22 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'user.type:agency'])
     Route::get('/labs-result', [AgencyLabResultController::class, 'viewLabResults'])->name('labs.result');
 });
 // User side
-// Route::prefix('user')->name('user_')->group(function () {
-Route::prefix('user')->name('user_')->middleware(['auth', 'user.type:user'])->group(function () {
-    // Authentication Routes
+// Route::get('/user/sign-up', [UserAuthController::class, 'showSignUp'])->name('user_signup');
+Route::prefix('u')->name('u_')->group(function () {
     Route::controller(UserAuthController::class)->group(function () {
-        Route::get('/sign-up', 'showSignUp')->name('signup');
+        Route::get('/sign-up', 'showSignUp')->name('sign_up');
+        Route::post('/sign-up', 'register')->name('sign_up_user');
         Route::get('/text-code', 'showTextCode')->name('text_code');
         Route::get('/enter-code', 'showEnterCode')->name('enter_code');
         Route::get('/login', 'showLogin')->name('login');
+        Route::post('/login', 'login')->name('login_user');
         Route::get('/upload-photo', 'showUploadPhoto')->name('upload_photo');
     });
+});
+// Route::prefix('user')->name('user_')->group(function () {
+Route::prefix('user')->name('user_')->middleware(['auth', 'user.type:user'])->group(function () {
+    // Authentication Routes
+  
 
     // Dashboard
     Route::get('/dashboard', [UserDashboardController::class, 'showDashboard'])->name('dashboard');
@@ -124,14 +141,15 @@ Route::prefix('user')->name('user_')->middleware(['auth', 'user.type:user'])->gr
     Route::get('/invoices', [UserInvoiceController::class, 'showInvoices'])->name('invoices');
 });
 // Clinic Side
+Route::prefix('c')->controller(AdminAuthController::class)->group(function () {
+    Route::get('/login', 'showLogin')->name('login');
+    Route::get('/text-code', 'showTextCode')->name('text.code');
+    Route::get('/enter-code', 'showEnterCode')->name('enter.code');
+});
 // Route::prefix('clinic')->name('clinic_')->group(function () {
 Route::prefix('clinic')->name('clinic_')->middleware(['auth', 'user.type:superadmin'])->group(function () {
     // Authentication Routes
-    Route::controller(AdminAuthController::class)->group(function () {
-        Route::get('/login', 'showLogin')->name('login');
-        Route::get('/text-code', 'showTextCode')->name('text.code');
-        Route::get('/enter-code', 'showEnterCode')->name('enter.code');
-    });
+    
 
     // Dashboard
     Route::get('/dashboard', [AdminDashboardController::class, 'showDashboard'])->name('dashboard');
