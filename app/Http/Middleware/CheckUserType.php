@@ -1,49 +1,48 @@
 <?php
 
-// app/Http/Middleware/CheckUserType.php
 namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class CheckUserType
 {
-    // public function handle(Request $request, Closure $next, ...$types)
-    // {
-    //     $user = $request->user();
-        
-    //     if (!$user || !in_array($user->role, $types)) {
-    //         // abort(403, 'Unauthorized access');
-    //         return redirect()->route('u_login');
-    //     }
-
-    //     return $next($request);
-    // }
-
     public function handle(Request $request, Closure $next, ...$types)
-{
-    $user = $request->user();
+    {
+        $guard = session('guard', 'web');
 
-    if (!$user) {
-        return redirect()->route('u_login');
+        $user = Auth::guard($guard)->user();
+
+        if (!$user) {
+            return redirect()->route('u_sign_up_user');
+        }
+
+        $role = $this->getUserRole($user);
+        error_log('User role: ' . $role);
+        if (!in_array($role, $types)) {
+            return redirect()->route($this->getDashboardRouteFor($role));
+        }
+
+        return $next($request);
     }
 
-    if (!in_array($user->role, $types)) {
-        return redirect()->route($this->getDashboardRouteFor($user->role));
+    protected function getUserRole($user)
+    {
+        if ($user instanceof \App\Models\AgencyUser) {
+            return 'user';
+        }
+
+        return $user->role ?? 'unknown';
     }
 
-    return $next($request);
-}
-
-protected function getDashboardRouteFor($type)
-{
-    return match ($type) {
-        'user' => 'user_dashboard',
-        'agency' => 'admin_dashboard',
-        'admin' => 'clinic_dashboard',
-        default => 'u_login',
-    };
-}
-
+    protected function getDashboardRouteFor($type)
+    {
+        return match ($type) {
+            'user'   => 'user_dashboard',
+            'agency' => 'admin_dashboard',
+            'admin'  => 'clinic_dashboard',
+            default  => 'u_login',
+        };
+    }
 }

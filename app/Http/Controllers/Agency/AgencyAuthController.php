@@ -18,20 +18,44 @@ class AgencyAuthController extends Controller
         return Inertia::render(AgencyInertiaViews::Agency_Sign_Up->value);
     }
 
+    // public function register(Request $request)
+    // {
+    //     $user = User::create([
+    //         'name' => $request->name,
+    //         'email' => $request->companyemail,
+    //         'password' => Hash::make($request->password),
+    //         'role' => 'agency',
+    //     ]);
+
+    //     return response()->json(['success' => true]);
+
+    // }
+    
     public function register(Request $request)
     {
+        // dd($request->all());
+        // $request->validate([
+        //     'name' => 'required|string',
+        //     'companyemail' => 'required|email|unique:users,email',
+        //     'password' => 'required|min:6',
+        //     'agency_name' => 'required|string',
+        // ]);
+    
         $user = User::create([
             'name' => $request->name,
             'email' => $request->companyemail,
             'password' => Hash::make($request->password),
             'role' => 'agency',
         ]);
-
-        return response()->json(['success' => true]);
-
-    }
     
-  
+        $agency = Agency::create([
+            'name' => $request->companyname,
+            'slug' => Str::slug($request->companyname) . '-' . Str::random(5),
+            'user_id' => $user->id,
+        ]);
+    
+        return response()->json(['success' => true]);
+    }
 
 
 }
