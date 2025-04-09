@@ -42,8 +42,8 @@ Route::post('/sign-up', [AgencyAuthController::class, 'register'])->name('signup
 
 // Agency side
 
-// Route::prefix('admin')->name('admin.')->group(function () {
-Route::prefix('admin')->name('admin_')->middleware(['auth', 'user.type:agency'])->group(function () {
+Route::prefix('admin')->name('admin_')->group(function () {
+// Route::prefix('admin')->name('admin_')->middleware(['auth', 'user.type:agency'])->group(function () {
 
 
     // Dashboard
@@ -128,8 +128,8 @@ Route::prefix('u')->name('u_')->group(function () {
     });
 });
 
-// Route::prefix('user')->name('user_')->group(function () {
-Route::prefix('user')->name('user_')->middleware(['auth', 'user.type:user'])->group(function () {
+Route::prefix('user')->name('user_')->group(function () {
+// Route::prefix('user')->name('user_')->middleware(['auth', 'user.type:user'])->group(function () {
     // Authentication Routes
 
 
@@ -170,8 +170,8 @@ Route::prefix('c')->controller(AdminAuthController::class)->group(function () {
     Route::get('/text-code', 'showTextCode')->name('text.code');
     Route::get('/enter-code', 'showEnterCode')->name('enter.code');
 });
-// Route::prefix('clinic')->name('clinic_')->group(function () {
-Route::prefix('clinic')->name('clinic_')->middleware(['auth', 'user.type:superadmin'])->group(function () {
+Route::prefix('clinic')->name('clinic_')->group(function () {
+// Route::prefix('clinic')->name('clinic_')->middleware(['auth', 'user.type:superadmin'])->group(function () {
     // Authentication Routes
 
 

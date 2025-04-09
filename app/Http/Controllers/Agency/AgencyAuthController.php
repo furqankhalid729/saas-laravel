@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Enums\AgencyInertiaViews;
 use App\Models\Agency;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
@@ -18,18 +19,7 @@ class AgencyAuthController extends Controller
         return Inertia::render(AgencyInertiaViews::Agency_Sign_Up->value);
     }
 
-    // public function register(Request $request)
-    // {
-    //     $user = User::create([
-    //         'name' => $request->name,
-    //         'email' => $request->companyemail,
-    //         'password' => Hash::make($request->password),
-    //         'role' => 'agency',
-    //     ]);
 
-    //     return response()->json(['success' => true]);
-
-    // }
     
     public function register(Request $request)
     {
@@ -53,8 +43,13 @@ class AgencyAuthController extends Controller
             'slug' => Str::slug($request->companyname) . '-' . Str::random(5),
             'user_id' => $user->id,
         ]);
+
+        Auth::login($user);
+        session(['guard' => 'web']);
+        session(['agency_id' => $agency->id]);
     
-        return response()->json(['success' => true]);
+        return redirect()->route('admin_dashboard');
+
     }
 
 
