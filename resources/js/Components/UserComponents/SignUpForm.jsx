@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 import { router } from '@inertiajs/react';
 import { Link } from '@inertiajs/react';
 
-const SignUpForm = () => {
+const SignUpForm = ({ slug }) => { // Receive slug as prop
   const validationSchema = Yup.object({
     name: Yup.string().required('Name is required'),
     email: Yup.string().email('Invalid email format').required('Email is required'),
@@ -13,6 +13,7 @@ const SignUpForm = () => {
     age: Yup.number().min(1, 'Invalid age').required('Age is required'),
     gender: Yup.string().required('Gender is required'),
     address: Yup.string().required('Address is required'),
+    password: Yup.string().min(8, 'Password must be at least 8 characters').required('Password is required'),
     terms: Yup.boolean().oneOf([true], 'You must accept the terms and conditions')
   });
 
@@ -24,12 +25,13 @@ const SignUpForm = () => {
     age: '',
     gender: '',
     address: '',
+    password: '',
     terms: false
   };
 
   const onSubmit = (values, { setSubmitting }) => {
-    // Send data to your Laravel route via Inertia
-    router.post('/u/sign-up', values, {
+    // Send data to your Laravel route via Inertia with slug in the URL
+    router.post(`/u/${slug}/sign-up`, values, {
       onFinish: () => setSubmitting(false),
     });
   };
@@ -104,6 +106,14 @@ const SignUpForm = () => {
                 <ErrorMessage name="address" component="div" className="text-red-600 text-sm" />
               </div>
 
+              {/* password */}
+              <div className='my-4'>
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password <span className='text-[#FF0000]'>*</span></label>
+                <Field type="password" id="password" name="password" placeholder="Enter your password"
+                  className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black" />
+                <ErrorMessage name="password" component="div" className="text-red-600 text-sm" />
+              </div>
+
               {/* terms */}
               <div className='my-4'>
                 <Field type="checkbox" id="terms" name="terms" className="mr-2 rounded border-gray-300 text-black focus:ring-black" />
@@ -124,7 +134,7 @@ const SignUpForm = () => {
 
                 <p className="mt-4 text-center text-sm text-gray-600">
                   Already have an account?{' '}
-                  <Link href="/u/login" className="text-red-500 underline">Log in</Link>
+                  <Link href={`/u/${slug}/login`} className="text-red-500 underline">Log in</Link>
                 </p>
               </div>
             </Form>

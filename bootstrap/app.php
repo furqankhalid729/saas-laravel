@@ -18,7 +18,7 @@ return Application::configure(basePath: dirname(__DIR__))
             // 'user.type' => \App\Http\Middleware\CheckUserType::class,
         ]);
         $middleware->alias([
-            'auth' => \App\Http\Middleware\Authenticate::class,
+            // 'auth' => \App\Http\Middleware\Authenticate::class,
             'user.type' => \App\Http\Middleware\CheckUserType::class,
         ]);
     

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm, Link } from '@inertiajs/react';
 
-const Login = () => {
+const Login = ({ agency }) => {
     const { data, setData, post, processing, errors } = useForm({
         username: '',
         password: '',
@@ -9,7 +9,7 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post('/u/login');
+        post(agency ? `/u/${agency.slug}/login` : '/u/login'); 
     };
 
     return (
@@ -17,7 +17,9 @@ const Login = () => {
             <div className='flex flex-col justify-center items-center gap-[50px] h-[620px] px-1 w-full'>
                 {/* Heading part */}
                 <div className='md:self-start flex flex-col gap-3 w-full sm:w-[360px] m-auto text-center'>
-                    <h2 className='text-[50px] leading-[60px] font-[600]'>Log In</h2>
+                    <h2 className='text-[50px] leading-[60px] font-[600]'>
+                        {agency ? `Log In for ${agency.name}` : 'Log In'} 
+                    </h2>
                     <p className='text-[#808080] text-[16px] leading-[20px] font-[400]'>
                         Don’t have an account? <Link href='/u/sign-up' className='text-black border-b border-gray-600'>Create a new account now,</Link> <br />
                         it’s FREE! Takes less than a minute.
@@ -25,7 +27,6 @@ const Login = () => {
                 </div>
 
                 <form onSubmit={handleSubmit} className='flex flex-col gap-[50px] w-full sm:w-[360px]'>
-                    {/* Inputs data */}
                     <div className='flex flex-col gap-[50px] text-[16px] font-[500] leading-[20px]'>
                         <input
                             type="text"

@@ -1,12 +1,16 @@
-import React from 'react'
-import SignUpForm from '../../../components/UserComponents/SignUpForm'
+import React from 'react';
+import SignUpForm from '../../../components/UserComponents/SignUpForm';
+import { usePage } from '@inertiajs/react';
 
 const SignUpScreen = () => {
+  const { props } = usePage();
+  const slug = props.slug;
+
   return (
     <div className='w-full min-h-screen md:w-1/2 flex justify-center items-center '>
-      <SignUpForm />
+      <SignUpForm slug={slug} />
     </div>
-  )
-}
+  );
+};
 
-export default SignUpScreen
+export default SignUpScreen;

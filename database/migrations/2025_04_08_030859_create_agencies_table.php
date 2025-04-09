@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('agencies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('slug')->unique();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->json('settings')->nullable();
+            $table->string('slug')->unique(); 
+            $table->foreignId('user_id')->constrained()->onDelete('cascade'); 
+            $table->json('settings')->nullable();  
             $table->timestamps();
             $table->softDeletes();
         });

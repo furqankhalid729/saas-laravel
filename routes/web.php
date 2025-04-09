@@ -41,10 +41,11 @@ Route::post('/sign-up', [AgencyAuthController::class, 'register'])->name('signup
 
 
 // Agency side
-// Route::prefix('admin')->name('admin.')->group(function () {
-Route::prefix('admin')->name('admin_')->middleware(['auth', 'user.type:agency'])->group(function () {
 
-    
+Route::prefix('admin')->name('admin_')->group(function () {
+// Route::prefix('admin')->name('admin_')->middleware(['auth', 'user.type:agency'])->group(function () {
+
+
     // Dashboard
     Route::get('/dashboard', [AgencyDashboardController::class, 'viewDashboard'])->name('dashboard');
 
@@ -96,21 +97,39 @@ Route::prefix('admin')->name('admin_')->middleware(['auth', 'user.type:agency'])
 });
 // User side
 // Route::get('/user/sign-up', [UserAuthController::class, 'showSignUp'])->name('user_signup');
+
+// Route::prefix('u')->name('u_')->group(function () {
+//     Route::controller(UserAuthController::class)->group(function () {
+//         Route::get('/sign-up', 'showSignUp')->name('sign_up');
+//         Route::post('/sign-up', 'register')->name('sign_up_user');
+//         Route::get('/text-code', 'showTextCode')->name('text_code');
+//         Route::get('/enter-code', 'showEnterCode')->name('enter_code');
+//         Route::get('/login', 'showLogin')->name('login');
+//         Route::post('/login', 'login')->name('login_user');
+//         Route::get('/upload-photo', 'showUploadPhoto')->name('upload_photo');
+//     });
+// });
 Route::prefix('u')->name('u_')->group(function () {
     Route::controller(UserAuthController::class)->group(function () {
-        Route::get('/sign-up', 'showSignUp')->name('sign_up');
-        Route::post('/sign-up', 'register')->name('sign_up_user');
+        // Route::get('/sign-up', 'showSignUp')->name('sign_up');
+        // Route::post('/sign-up', 'register')->name('sign_up_user');
+        Route::get('/{slug}/sign-up', 'showSignUp')->name('sign_up');
+        Route::post('/{slug}/sign-up', 'register')->name('sign_up_user');
         Route::get('/text-code', 'showTextCode')->name('text_code');
         Route::get('/enter-code', 'showEnterCode')->name('enter_code');
-        Route::get('/login', 'showLogin')->name('login');
-        Route::post('/login', 'login')->name('login_user');
+        // Route::prefix('a')->name('a_')->group(function () {
+        Route::get('/{agency}/login', [UserAuthController::class, 'showLogin'])->name('login');
+        Route::post('/{agency}/login', 'login')->name('login_user');
+        // });
+        // Route::post('/login', 'login')->name('login_user');
         Route::get('/upload-photo', 'showUploadPhoto')->name('upload_photo');
     });
 });
-// Route::prefix('user')->name('user_')->group(function () {
-Route::prefix('user')->name('user_')->middleware(['auth', 'user.type:user'])->group(function () {
+
+Route::prefix('user')->name('user_')->group(function () {
+// Route::prefix('user')->name('user_')->middleware(['auth', 'user.type:user'])->group(function () {
     // Authentication Routes
-  
+
 
     // Dashboard
     Route::get('/dashboard', [UserDashboardController::class, 'showDashboard'])->name('dashboard');
@@ -146,10 +165,10 @@ Route::prefix('c')->controller(AdminAuthController::class)->group(function () {
     Route::get('/text-code', 'showTextCode')->name('text.code');
     Route::get('/enter-code', 'showEnterCode')->name('enter.code');
 });
-// Route::prefix('clinic')->name('clinic_')->group(function () {
-Route::prefix('clinic')->name('clinic_')->middleware(['auth', 'user.type:superadmin'])->group(function () {
+Route::prefix('clinic')->name('clinic_')->group(function () {
+// Route::prefix('clinic')->name('clinic_')->middleware(['auth', 'user.type:superadmin'])->group(function () {
     // Authentication Routes
-    
+
 
     // Dashboard
     Route::get('/dashboard', [AdminDashboardController::class, 'showDashboard'])->name('dashboard');
