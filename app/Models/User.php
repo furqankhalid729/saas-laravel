@@ -7,35 +7,34 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
+// class AgencyUser extends Authenticatable
+
 {
     use Notifiable, SoftDeletes;
 
     protected $fillable = [
-        'name', 'email', 'password', 'role','username',
+        'name',
+        'email',
+        'password',
+        'role',
+        'username',
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    // Relationship with owned agency (for agency users)
-    public function agency()
-    {
-        return $this->hasOne(agency::class);
-    }
-
-    // Relationship with agencies (for client users)
     public function agencies()
-    {
-        return $this->belongsToMany(agency::class)
-            ->using(AgencyUser::class)
-            ->withPivot(['client_id', 'status'])
-            ->withTimestamps();
-    }
+{
+    return $this->belongsToMany(Agency::class, 'agency_users')
+                ->withPivot('client_id')
+                ->withTimestamps();
+}
 
     // Helper methods
     public function isSuperAdmin()

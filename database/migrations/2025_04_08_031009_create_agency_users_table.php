@@ -13,11 +13,17 @@ return new class extends Migration
     {
         Schema::create('agency_users', function (Blueprint $table) {
             $table->foreignId('agency_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->primary(['agency_id', 'user_id']);
+            $table->string('email');  
+            $table->string('password');  
             $table->string('client_id');
-            $table->enum('status', ['active', 'pending', 'suspended'])->default('pending');
+            $table->string('phoneNo')->nullable();
+            $table->string('relation')->nullable();
+            $table->integer('age')->nullable();
+            $table->enum('gender', ['Male', 'Female', 'Other'])->nullable();
+            $table->text('address')->nullable();
             $table->timestamps();
+
+            $table->primary(['email', 'agency_id']);  
         });
     }
 
