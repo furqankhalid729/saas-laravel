@@ -21,8 +21,11 @@ class CheckAgencySubscription
                                         ->latest()
                                         ->first();
 
-        if (!$subscription || $subscription->start_date > now() || $subscription->end_date < now()) {
-            // return redirect()->route('admin_choose_plan')->with('error', 'Please subscribe to access this page.');
+        if (!$subscription) {
+            if ($request->routeIs('admin_choose_plan')) {
+                return $next($request);
+            }
+
             return redirect()->route('admin_choose_plan')->with('error', 'Please subscribe to access this page.');
         }
 

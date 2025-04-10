@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Enums\AgencyInertiaViews;
 use App\Models\Agency;
 use App\Models\User;
+use App\Models\UserSubscription;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
@@ -72,5 +73,17 @@ class AgencyAuthController extends Controller
         } else {
             return redirect()->back()->withErrors(['companyemail' => 'Invalid email or password.']);
         }
+    }
+
+
+    public function checkSubscription(){
+
+        $user = Auth::user();
+$subscription = UserSubscription::where('user_id', $user->id)
+                                        ->latest()
+                                        ->first();
+
+                                        dd($subscription);
+
     }
 }

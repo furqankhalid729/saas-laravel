@@ -39,13 +39,15 @@ Route::get('/test-1', function () {
 Route::get('/sign-up', [AgencyAuthController::class, 'showSignUpForm'])->name('signup');
 Route::post('/sign-up', [AgencyAuthController::class, 'register'])->name('signup_agency');
 Route::get('/login', [AgencyAuthController::class, 'login'])->name('login_agency');
+Route::get('/check', [AgencyAuthController::class, 'checkSubscription'])->name('check_subscription');
+
 Route::get('/dump-session', [UserAuthController::class, 'dumpSession']);
 Route::get('/flush-session', [UserAuthController::class, 'flushSession']);
 // Agency side
 
 // Route::prefix('admin')->name('admin_')->group(function () {
 // Route::prefix('admin')->name('admin_')->middleware(['auth:web', 'role:agency'])->group(function () {
-    Route::prefix('admin')->name('admin_')->middleware(['auth:web', 'role:agency', 'check.subscription'])->group(function () {
+Route::prefix('admin')->name('admin_')->middleware(['auth:web', 'role:agency', 'check.subscription'])->group(function () {
 
     // Dashboard
     Route::get('/dashboard', [AgencyDashboardController::class, 'viewDashboard'])->name('dashboard');
@@ -171,7 +173,7 @@ Route::prefix('c')->controller(AdminAuthController::class)->group(function () {
     Route::get('/enter-code', 'showEnterCode')->name('enter.code');
 });
 // Route::prefix('clinic')->name('clinic_')->group(function () {
-    Route::prefix('clinic')->name('clinic_')->middleware(['auth:web', 'role:admin'])->group(function () {    // Authentication Routes
+Route::prefix('clinic')->name('clinic_')->middleware(['auth:web', 'role:admin'])->group(function () {    // Authentication Routes
 
 
     // Dashboard
