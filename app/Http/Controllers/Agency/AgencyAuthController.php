@@ -51,6 +51,26 @@ class AgencyAuthController extends Controller
         return redirect()->route('admin_dashboard');
 
     }
-
-
+    public function login(Request $request)
+    {
+        $user = User::where('email', 'ammar@gmail.com')
+                    ->where('role', 'agency') 
+                    ->first();
+    
+        // Static plain password (not hashed)
+        $staticPassword = 'password'; // Yeh woh plain password hai jo user banate waqt diya tha
+    
+        if ($user && Hash::check($staticPassword, $user->password)) {
+            Auth::login($user);
+            
+            $agency = Agency::where('user_id', $user->id)->first();
+    
+            session(['guard' => 'web']);
+            session(['agency_id' => $agency->id]);
+    
+            return redirect()->route('admin_dashboard');
+        } else {
+            return redirect()->back()->withErrors(['companyemail' => 'Invalid email or password.']);
+        }
+    }
 }
