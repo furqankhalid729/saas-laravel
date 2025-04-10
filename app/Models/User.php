@@ -51,4 +51,11 @@ class User extends Authenticatable
     {
         return $this->role === 'user';
     }
+
+    public function UserSubscription()
+    {
+       return $this->hasMany(UserSubscription::class, 'user_id');
+    }
+
+    
 }

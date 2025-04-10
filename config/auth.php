@@ -71,7 +71,7 @@ return [
         ],
 
         'agency_users' => [
-            'driver' => 'eloquent',
+            'driver' => 'custom_eloquent',
             'model' => App\Models\AgencyUser::class,
         ],
         // 'users' => [
