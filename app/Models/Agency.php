@@ -11,17 +11,9 @@ class Agency extends Model
 
     protected $fillable = ['name', 'slug', 'user_id', 'settings'];
 
-    public function users()
-    {
-        return $this->belongsToMany(User::class, 'agency_users')
-                    ->withPivot('client_id')
-                    ->withTimestamps();
-    }
-    
-
+  
     public function owner()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 }
-

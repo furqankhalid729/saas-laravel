@@ -38,7 +38,9 @@ Route::get('/test-1', function () {
 // Authentication Routes
 Route::get('/sign-up', [AgencyAuthController::class, 'showSignUpForm'])->name('signup');
 Route::post('/sign-up', [AgencyAuthController::class, 'register'])->name('signup_agency');
-Route::get('/login', [AgencyAuthController::class, 'login'])->name('login_agency');
+Route::get('/{agency}/login', [AgencyAuthController::class, 'showLogin'])->name('agency_login');
+// Route::get('/login', [AgencyAuthController::class, 'login'])->name('login_agency');
+Route::post('/a/{agency}/login', [AgencyAuthController::class, 'login'])->name('agency_login.post');
 Route::get('/check', [AgencyAuthController::class, 'checkSubscription'])->name('check_subscription');
 
 Route::get('/dump-session', [UserAuthController::class, 'dumpSession']);
@@ -55,8 +57,9 @@ Route::prefix('admin')->name('admin_')->middleware(['auth:web', 'role:agency', '
     // Clients
     Route::prefix('clients')->name('clients_')->group(function () {
         Route::get('/', [AgencyClientController::class, 'viewClientList'])->name('list');
-        Route::get('/form', [AgencyClientController::class, 'showClientForm'])->name('form');
-        Route::get('/new-forms', [AgencyClientController::class, 'viewNewClientForms'])->name('new.form');
+        // Route::get('/form', [AgencyClientController::class, 'showClientForm'])->name('form');
+        Route::get('/form/{client_id}', [AgencyClientController::class, 'showClientForm'])->name('form'); // Dynamic route for client form
+        Route::get('/new-forms', [AgencyClientController::class, 'viewNewClientForms'])->name('new_form');
     });
 
     // Appointments

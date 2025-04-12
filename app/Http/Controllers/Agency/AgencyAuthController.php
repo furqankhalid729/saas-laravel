@@ -21,6 +21,18 @@ class AgencyAuthController extends Controller
     }
 
 
+    public function showLogin($agency = null)
+{
+    $agencyData = null;
+
+    if ($agency) {
+        $agencyData = Agency::where('slug', $agency)->firstOrFail();
+    }
+    return Inertia::render(AgencyInertiaViews::Agency_Login->value, [
+        'agency' => $agencyData
+    ]);
+}
+
     
     public function register(Request $request)
     {
@@ -52,28 +64,56 @@ class AgencyAuthController extends Controller
         return redirect()->route('admin_dashboard');
 
     }
-    public function login(Request $request)
-    {
-        $user = User::where('email', 'ammar@gmail.com')
-                    ->where('role', 'agency') 
-                    ->first();
+    // public function login(Request $request)
+    // {
+    //     $user = User::where('email', 'ammar@gmail.com')
+    //                 ->where('role', 'agency') 
+    //                 ->first();
     
-        // Static plain password (not hashed)
-        $staticPassword = 'password'; // Yeh woh plain password hai jo user banate waqt diya tha
+    //     // Static plain password (not hashed)
+    //     $staticPassword = 'password'; // Yeh woh plain password hai jo user banate waqt diya tha
     
-        if ($user && Hash::check($staticPassword, $user->password)) {
-            Auth::login($user);
+    //     if ($user && Hash::check($staticPassword, $user->password)) {
+    //         Auth::login($user);
             
-            $agency = Agency::where('user_id', $user->id)->first();
+    //         $agency = Agency::where('user_id', $user->id)->first();
     
-            session(['guard' => 'web']);
-            session(['agency_id' => $agency->id]);
+    //         session(['guard' => 'web']);
+    //         session(['agency_id' => $agency->id]);
     
-            return redirect()->route('admin_dashboard');
-        } else {
-            return redirect()->back()->withErrors(['companyemail' => 'Invalid email or password.']);
-        }
+    //         return redirect()->route('admin_dashboard');
+    //     } else {
+    //         return redirect()->back()->withErrors(['companyemail' => 'Invalid email or password.']);
+    //     }
+    // }
+
+
+    public function login(Request $request, $agency)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'password' => 'required'
+    ]);
+
+    $agencyData = Agency::where('slug', $agency)->firstOrFail();
+
+    $user = User::where('email', $request->email)
+                ->where('role', 'agency')
+                ->first();
+
+    if ($user && Hash::check($request->password, $user->password)) {
+        Auth::login($user);
+
+        session(['guard' => 'web']);
+        session(['agency_id' => $agencyData->id]);
+
+        return redirect()->route('admin_dashboard'); 
     }
+
+    return back()->withErrors([
+        'email' => 'Invalid email or password.',
+    ])->onlyInput('email');
+}
 
 
     public function checkSubscription(){

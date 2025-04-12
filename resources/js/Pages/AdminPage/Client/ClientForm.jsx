@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import FormsTable from '../../../components/AdminComponents/TableComponents/FormsTable';
 import Profile from '../../../components/AdminComponents/Profile';
 import AdditionalDetails from '../../../components/AdminComponents/AdditionalDetails';
@@ -16,8 +16,6 @@ import ProgressBar from '../../../components/ProgressBar/ProgressBar';
 import I693From from '../../../components/AdminComponents/Forms/I693From';
 import AdminLayout from '../../../Layout/AdminLayout';
 
-
-
 let PagesNumber = [
     { Number: 1, PageName: "Profile" },
     { Number: 2, PageName: "Appointment" },
@@ -28,9 +26,9 @@ let PagesNumber = [
     { Number: 7, PageName: "Timeline" },
     { Number: 8, PageName: "Payment" },
     { Number: 9, PageName: "Relatives" },
-]
+];
 
-const ClientForm = () => {
+const ClientForm = ({ client }) => {
 
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -42,13 +40,13 @@ const ClientForm = () => {
                     {/* heading */}
                     <div className='flex items-center text-nowrap gap-2'>
                         <IoIosArrowRoundBack className='text-[30px]' onClick={() => setCurrentPage(currentPage - 1)} />
-                        <h1 className='font-[700] text-[16px] leading-[19px]'>Adam Smith</h1>
+                        <h1 className='font-[700] text-[16px] leading-[19px]'>{client?.name || 'Loading...'}</h1>
                         <p className='font-[400] text-[8px] leading-[9px] p-1 bg-[#bebebe]'>Paid</p>
                     </div>
                     <ProgressBar currentPage={currentPage} />
                 </div>
                 {/* Pages names */}
-                <div className='grid  grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 font-[400] text-[16px] leading-[19px]'>
+                <div className='grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-3 font-[400] text-[16px] leading-[19px]'>
                     {PagesNumber.map((data, index) => (
                         <p key={index} onClick={() => setCurrentPage(data.Number)} className={`${currentPage === data.Number ? 'bg-white shadow-md' : "bg-[#cecaca]"} hover:cursor-pointer rounded px-2 py-1 text-nowrap text-center`}>{data.PageName}</p>
                     ))}
@@ -113,12 +111,13 @@ const ClientForm = () => {
                     </div>
                     {/* right side Profile div */}
                     <div className='w-full sm:w-[60%] lg:w-[30%]'>
-                        <Profile currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                        <Profile currentPage={currentPage} setCurrentPage={setCurrentPage} client={client} />
                     </div>
                 </div>
             </div>
-        </div >
-    )
+        </div>
+    );
 }
+
 ClientForm.layout = page => <AdminLayout children={page} title="Client Form" />
-export default ClientForm
+export default ClientForm;

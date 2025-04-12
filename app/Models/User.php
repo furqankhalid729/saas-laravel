@@ -29,12 +29,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function agencies()
-{
-    return $this->belongsToMany(Agency::class, 'agency_users')
-                ->withPivot('client_id')
-                ->withTimestamps();
-}
+    public function agency()
+    {
+        return $this->hasOne(Agency::class, 'user_id');
+    }
 
     // Helper methods
     public function isSuperAdmin()
