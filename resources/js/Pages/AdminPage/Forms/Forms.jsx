@@ -2,7 +2,7 @@ import React from 'react'
 import { FiPlusCircle } from "react-icons/fi";
 import FormsCard from "../../../components/AdminComponents/Forms/FormsCard"
 import { Link } from '@inertiajs/react';
-import AdminLayout from '../../../layout/AdminLayout';
+import AgencyLayout from '../../../layout/AgencyLayout';
 
 const Forms = () => {
     return (
@@ -25,5 +25,5 @@ const Forms = () => {
         </div>
     )
 }
-Forms.layout = page => <AdminLayout children={page} title="Forms" />
+Forms.layout = page => <AgencyLayout children={page} title="Forms" />
 export default Forms

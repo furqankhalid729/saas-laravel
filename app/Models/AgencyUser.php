@@ -2,32 +2,21 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class AgencyUser extends Authenticatable
+class AgencyUser extends Model
 {
-    use HasFactory;
-
-    protected $table = 'agency_users';
-
-    protected $primaryKey = null; // No single primary key
-    public $incrementing = false; // Not auto-incrementing
-
-    protected $fillable = [
-        'agency_id', 'email', 'password', 'client_id', 'phoneNo', 'relation', 'age', 'gender', 'address',
-    ];
+    protected $fillable = ['user_id', 'agency_id', 'role', 'password'];
 
     protected $hidden = ['password'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function agency()
     {
         return $this->belongsTo(Agency::class);
-    }
-
-    // Return composite key as a string for session storage
-    public function getAuthIdentifier()
-    {
-        return $this->email . '|' . $this->agency_id; // e.g., "vysad@mailinator.com|1"
     }
 }

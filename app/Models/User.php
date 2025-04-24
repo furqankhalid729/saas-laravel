@@ -11,13 +11,19 @@ class User extends Authenticatable
 
 {
     use Notifiable, SoftDeletes;
-
     protected $fillable = [
         'name',
         'email',
         'password',
         'role',
         'username',
+        "agency_id",
+
+        'phone_number',
+        'relation',
+        'age',
+        'gender',
+        'address'
     ];
 
     protected $hidden = [
@@ -29,33 +35,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function agencies()
-{
-    return $this->belongsToMany(Agency::class, 'agency_users')
-                ->withPivot('client_id')
-                ->withTimestamps();
-}
-
-    // Helper methods
-    public function isSuperAdmin()
+    public function agency()
     {
-        return $this->role === 'superadmin';
+        return $this->hasOne(Agency::class);
     }
 
-    public function isAgency()
+    public function agencyUsers()
     {
-        return $this->role === 'agency';
+        return $this->hasMany(AgencyUser::class);
     }
-
-    public function isRegularUser()
-    {
-        return $this->role === 'user';
-    }
-
-    public function UserSubscription()
-    {
-       return $this->hasMany(UserSubscription::class, 'user_id');
-    }
-
-    
 }

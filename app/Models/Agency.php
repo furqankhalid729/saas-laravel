@@ -2,26 +2,29 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Agency extends Model
 {
-    use HasFactory;
+    protected $fillable = ['name', 'domain', 'settings'];
 
-    protected $fillable = ['name', 'slug', 'user_id', 'settings'];
+    protected $casts = [
+        'settings' => 'array',
+    ];
 
-    public function users()
+    public function agencyUsers()
     {
-        return $this->belongsToMany(User::class, 'agency_users')
-                    ->withPivot('client_id')
-                    ->withTimestamps();
+        return $this->hasMany(AgencyUser::class);
     }
-    
 
-    public function owner()
+    public function subscription()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->hasOne(AgencySubscription::class);
+    }
+
+    // In Agency model (Agency.php)
+    public function user()
+    {
+        return $this->belongsTo(User::class);  // One agency can have many users
     }
 }
-

@@ -2,7 +2,7 @@ import React from 'react'
 import Profile from '../../../components/AdminComponents/Profile'
 import ChatMessages from '../../../components/AdminComponents/Chat/ChatMessages'
 import Messages from '../../../components/AdminComponents/Chat/Messages'
-import AdminLayout from '../../../Layout/AdminLayout';
+import AgencyLayout from '../../../Layout/AgencyLayout';
 
 const Chat = () => {
     return (
@@ -26,5 +26,5 @@ const Chat = () => {
         </div>
     )
 }
-Chat.layout = page => <AdminLayout children={page} title="Chat" />
+Chat.layout = page => <AgencyLayout children={page} title="Chat" />
 export default Chat

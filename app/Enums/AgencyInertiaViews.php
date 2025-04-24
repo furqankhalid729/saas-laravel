@@ -10,6 +10,7 @@ enum AgencyInertiaViews: string
     case AgencyClientFormPage = 'AdminPage/Client/ClientForm';
     case AgencyClientNewFormsPage = 'AdminPage/Forms/RequestNewForm';
     case Agency_Sign_Up = 'AdminPage/SignUp';
+    case Agency_Login = 'AdminPage/Login';
     case Agency_Dashboard = 'AdminPage/AdminDashboard';
     case Agency_Documents_List = 'AdminPage/Documents';
     case Agency_Collab_Documents = 'AdminPage/CollabDocuments';
@@ -23,9 +24,4 @@ enum AgencyInertiaViews: string
     case Agency_Plan_Selection = 'AdminPage/ChoosePlan';
     case Agency_Report_List = 'AdminPage/Reports';
     case Agency_Settings_Page = 'AdminPage/Settings';
-
-
-
-
-
 }

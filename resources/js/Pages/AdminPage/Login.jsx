@@ -1,11 +1,7 @@
 import React from 'react'
-import Login from '../../../components/UserComponents/Login'
-import { usePage } from '@inertiajs/react'
+import Login from '../../Components/AdminComponents/Login'
 
 const LoginScreen = () => {
-  const { props } = usePage()
-  const agency = props.agency
-
   return (
     <div className="flex flex-col md:flex-row">
       <div className="md:w-[50%] lg:w-[60%] bg-[#231E20] flex flex-col justify-end">
@@ -37,8 +33,8 @@ const LoginScreen = () => {
           </footer>
         </div>
       </div>
-      <div className='w-full min-h-screen md:w-1/2 flex justify-center items-center '>
-        <Login agency={agency} />
+      <div className='w-full min-h-screen md:w-[50%] lg:w-[40%] flex justify-center items-center '>
+        <Login />
       </div>
     </div>
   )

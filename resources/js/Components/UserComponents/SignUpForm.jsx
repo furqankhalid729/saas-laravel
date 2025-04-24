@@ -31,7 +31,7 @@ const SignUpForm = ({ slug }) => { // Receive slug as prop
 
   const onSubmit = (values, { setSubmitting }) => {
     // Send data to your Laravel route via Inertia with slug in the URL
-    router.post(`/u/${slug}/sign-up`, values, {
+    router.post(`/${slug}/sign-up`, values, {
       onFinish: () => setSubmitting(false),
     });
   };
@@ -134,7 +134,7 @@ const SignUpForm = ({ slug }) => { // Receive slug as prop
 
                 <p className="mt-4 text-center text-sm text-gray-600">
                   Already have an account?{' '}
-                  <Link href={`/u/${slug}/login`} className="text-red-500 underline">Log in</Link>
+                  <Link href={`/${slug}/login`} className="text-red-500 underline">Log in</Link>
                 </p>
               </div>
             </Form>

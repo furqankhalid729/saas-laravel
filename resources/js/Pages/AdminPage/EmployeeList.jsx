@@ -1,6 +1,6 @@
 import React from 'react'
 import EmployeeListTable from '../../components/AdminComponents/TableComponents/EmployeeListTable';
-import AdminLayout from '../../layout/AdminLayout';
+import AgencyLayout from '../../layout/AgencyLayout';
 
 const EmployeeList = () => {
   return (
@@ -11,5 +11,5 @@ const EmployeeList = () => {
     </div>
   )
 }
-EmployeeList.layout = page => <AdminLayout children={page} title="Employee List" />
+EmployeeList.layout = page => <AgencyLayout children={page} title="Employee List" />
 export default EmployeeList

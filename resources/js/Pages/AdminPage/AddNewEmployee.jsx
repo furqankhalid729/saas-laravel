@@ -1,7 +1,7 @@
 import React from 'react'
 import AddEmployee from '../../components/AdminComponents/AddEmployee'
 import EmployeePartialAccess from '../../components/AdminComponents/EmployeePartialAccess'
-import AdminLayout from '../../layout/AdminLayout';
+import AgencyLayout from '../../layout/AgencyLayout';
 
 const AddNewEmployee = () => {
     return (
@@ -21,5 +21,5 @@ const AddNewEmployee = () => {
         </div>
     )
 }
-AddNewEmployee.layout = page => <AdminLayout children={page} title="Add New Employee" />
+AddNewEmployee.layout = page => <AgencyLayout children={page} title="Add New Employee" />
 export default AddNewEmployee

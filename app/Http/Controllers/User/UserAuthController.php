@@ -7,6 +7,7 @@ use App\Enums\UserInertiaViews;
 use App\Models\Agency;
 use App\Models\AgencyUser;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
@@ -14,13 +15,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserAuthController extends Controller
 {
-
-    // public function showSignUp()
-    // {
-
-    //     return Inertia::render(UserInertiaViews::USER_SIGN_UP->value);
-
-    // }
 
     public function showSignUp($slug)
     {
@@ -39,20 +33,12 @@ class UserAuthController extends Controller
         return Inertia::render(UserInertiaViews::USER_ENTER_CODE->value);
     }
 
-    // public function showLogin()
-    // {
-    //     return Inertia::render(UserInertiaViews::USER_LOGIN->value);
-    // }
-
-
     public function showLogin($agency = null)
     {
         $agencyData = null;
-
         if ($agency) {
-            $agencyData = Agency::where('slug', $agency)->firstOrFail();
+            $agencyData = Agency::where('domain', $agency)->firstOrFail();
         }
-
         return Inertia::render(UserInertiaViews::USER_LOGIN->value, [
             'agency' => $agencyData
         ]);
@@ -65,132 +51,76 @@ class UserAuthController extends Controller
     }
 
 
-
-
-    // public function register(Request $request, $slug)
-    // {
-    //     $agency = Agency::where('slug', $slug)->firstOrFail();
-
-    //     $alreadyLinked = AgencyUser::where('email', $request->email)
-    //         ->where('agency_id', $agency->id)
-    //         ->exists();
-
-    //     if ($alreadyLinked) {
-    //         return response()->json(['message' => 'User already onboarded with this agency'], 409);
-    //     }
-
-    //     $clientId = strtoupper(substr($agency->name, 0, 3)) . '-' . mt_rand(1000, 9999);
-
-    //     AgencyUser::create([
-    //         'agency_id' => $agency->id,
-    //         'email' => $request->email,
-    //         'password' => Hash::make($request->password),
-    //         'client_id' => $clientId,
-    //         'phoneNo' => $request->phoneNo ?? null,
-    //         'relation' => $request->relation ?? null,
-    //         'age' => $request->age ?? null,
-    //         'gender' => $request->gender ?? null,
-    //         'address' => $request->address ?? null,
-    //     ]);
-
-    //     return response()->json(['message' => 'User onboarded to agency successfully']);
-    // }
-
-
     public function register(Request $request, $slug)
     {
-        $agency = Agency::where('slug', $slug)->firstOrFail();
-
-        $alreadyLinked = AgencyUser::where('email', $request->email)
-            ->where('agency_id', $agency->id)
-            ->exists();
-
-        if ($alreadyLinked) {
-            return response()->json(['message' => 'User already onboarded with this agency'], 409);
+        
+        $agency = Agency::where('domain', $slug)->firstOrFail();
+        $existingUser = User::where('email', $request->email)->first();
+        if ($existingUser) {
+            $alreadyLinked = AgencyUser::where('user_id', $existingUser->id)
+                ->where('agency_id', $agency->id)
+                ->exists();
+            if ($alreadyLinked) {
+                return redirect()->back()
+                    ->withErrors(['email' => 'This email is already registered with agency.'])
+                    ->withInput();
+            }
         }
 
-        $clientId = strtoupper(substr($agency->name, 0, 3)) . '-' . mt_rand(1000, 9999);
-
-        $agencyUser = AgencyUser::create([
-            'agency_id' => $agency->id,
+        $user = $existingUser ?? User::create([
+            'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'client_id' => $clientId,
-            'phoneNo' => $request->phoneNo ?? null,
-            'relation' => $request->relation ?? null,
-            'age' => $request->age ?? null,
-            'gender' => $request->gender ?? null,
-            'address' => $request->address ?? null,
+            'phone_number' => $request->phoneNo,
+            'relation' => $request->relation,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'address' => $request->address,
         ]);
-        Auth::guard('agency_user')->login($agencyUser);
-        session(['agency_user_id' => $agencyUser->id]);
-        session(['guard' => 'agency_user']);
 
-        return redirect()->route('user_dashboard');
+        AgencyUser::create([
+            'user_id' => $user->id,
+            'agency_id' => $agency->id,
+            'role' => 'client',
+            'password' => Hash::make($request->password),
+        ]);
+        $request->session()->flush();
+        return redirect()->route('user.login', ['agency' => $slug])
+            ->with('message', 'Registration successful! Please log in.');
     }
-
-
-    // public function login(Request $request, $agencySlug = null)
-    // {
-    //     // dd($request->all());
-    //     if ($agencySlug) {
-    //         $agency = Agency::where('slug', $agencySlug)->first();
-
-    //         if (!$agency) {
-    //             return redirect()->back()->withErrors(['agency' => 'Agency not found.']);
-    //         }
-
-    //         $agencyUser = AgencyUser::where('agency_id', $agency->id)
-    //             ->where('email', $request->username)
-    //             ->first();
-    //     } 
-
-    //     if ($agencyUser && Hash::check($request->password, $agencyUser->password)) {
-    //         Auth::guard('agency_user')->login($agencyUser);
-    //         session(['agency_user_id' => $agencyUser->id]);
-    //         app('session')->put('guard', 'agency_user'); 
-    //         return redirect()->route('user_dashboard');
-    //     } else {
-    //         return redirect()->back()->withErrors(['email' => 'Invalid email or password.']);
-    //     }
-    // }
-
 
     public function login(Request $request, $agencySlug = null)
     {
-        if ($agencySlug) {
-            $agency = Agency::where('slug', $agencySlug)->first();
-            if (!$agency) {
-                return redirect()->back()->withErrors(['agency' => 'Agency not found.']);
-            }
-    
-            $agencyUser = AgencyUser::where('agency_id', $agency->id)
-                ->where('email', $request->username)
-                ->first();
+        $agency = Agency::where('domain', $agencySlug)->firstOrFail();
+        $user = User::where('email', $request->username)->firstOrFail();
+        // Fetch the agency via pivot
+        Log::info('User login attempt', [
+            $agency,
+            $user
+        ]);
+        $agencyUser = AgencyUser::where('user_id', $user->id)
+            ->where('agency_id', $agency->id)
+            ->first();
+            
+        if (! $agencyUser) {
+            return response()->json(['error' => 'User not assigned to any agency'], 404);
         }
-    
-        if ($agencyUser && Hash::check($request->password, $agencyUser->password)) {
-            Auth::guard('agency_user')->login($agencyUser);
-            $request->session()->regenerate();
-            $request->session()->put('agency_user_id', $agencyUser->getKey());
-            $request->session()->put('guard', 'agency_user');
-    
-            // Debugging (optional)
-            // dd($request->session()->all(), Auth::guard('agency_user')->user());
-    
-            return redirect()->route('user_dashboard');
-        } else {
-            return redirect()->back()->withErrors(['email' => 'Invalid email or password.']);
+        $agency = $agencyUser->agency;
+
+        Log::info('User login attempt', [
+            $agency
+        ]);
+        if (!Hash::check($request->password, $agencyUser->password)) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
         }
+        Auth::login($user);
+        session(['current_agency_id' => $agency->id]);
+        return redirect()->route('user.dashboard');
     }
 
-    public function dumpSession(Request $request)
-{
-    dd($request->session()->all());
-}
-public function flushSession(Request $request)
-{
-    $request->session()->flush();
-    // return redirect()->back()->with('message', 'Session flushed!');
-}
+    public function flushSession(Request $request)
+    {
+        Auth::logout();
+        $request->session()->flush();
+        // return redirect()->back()->with('message', 'Session flushed!');
+    }
 }

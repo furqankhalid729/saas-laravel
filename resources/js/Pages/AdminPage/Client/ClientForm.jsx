@@ -14,7 +14,7 @@ import RelativesTable from '../../../components/AdminComponents/TableComponents/
 import SoftNotesTable from '../../../components/AdminComponents/TableComponents/SoftNotesTable';
 import ProgressBar from '../../../components/ProgressBar/ProgressBar';
 import I693From from '../../../components/AdminComponents/Forms/I693From';
-import AdminLayout from '../../../Layout/AdminLayout';
+import AgencyLayout from '../../../Layout/AgencyLayout';
 
 
 
@@ -120,5 +120,5 @@ const ClientForm = () => {
         </div >
     )
 }
-ClientForm.layout = page => <AdminLayout children={page} title="Client Form" />
+ClientForm.layout = page => <AgencyLayout children={page} title="Client Form" />
 export default ClientForm

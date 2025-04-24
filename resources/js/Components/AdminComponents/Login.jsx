@@ -1,75 +1,85 @@
 import React from 'react';
-import { useForm, Link } from '@inertiajs/react';
+import { Link, useForm } from '@inertiajs/react';
 
-const Login = ({ agency }) => {
-    console.log(agency)
+const Login = () => {
+    // Initialize the form using useForm hook
     const { data, setData, post, processing, errors } = useForm({
-        username: '',
+        email: '',
         password: '',
     });
 
+    // Handle input change
+    const handleChange = (e) => {
+        setData(e.target.name, e.target.value);
+    };
+
+    // Handle form submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(agency ? `/${agency.domain}/login` : '/u/login'); 
+
+        // Basic validation (if needed)
+        if (!data.email || !data.password) {
+            alert('Please fill in both fields.');
+            return;
+        }
+        // Submit form data to the backend using Inertia.js
+        post(route('agency.login'), data);
     };
 
     return (
         <div className='w-full h-full flex flex-col justify-center items-center'>
-            <div className='flex flex-col justify-center items-center gap-[50px] h-[620px] px-1 w-full'>
+            <div className='flex flex-col justify-center items-center gap-[50px] h-[620px] px-1 w-full my-10'>
+                {/* Spot Logo */}
+                <div className='w-[85%]'>
+                    <img src="/storage/images/Clinic/SpotLogo.png" alt="spotLogo" className='w-[100px] h-[100px]' />
+                </div>
                 {/* Heading part */}
-                <div className='md:self-start flex flex-col gap-3 w-full sm:w-[360px] m-auto text-center'>
-                    <h2 className='text-[50px] leading-[60px] font-[600]'>
-                        {agency ? `Log In for ${agency.name}` : 'Log In'} 
-                    </h2>
+                <div className='md:self-start flex flex-col gap-3 w-[85%] m-auto text-center'>
+                    <h2 className='text-[50px] leading-[60px] font-[600]'>Welcome Back!</h2>
                     <p className='text-[#808080] text-[16px] leading-[20px] font-[400]'>
-                        Don’t have an account? <Link href='/u/sign-up' className='text-black border-b border-gray-600'>Create a new account now,</Link> <br />
+                        Don’t have an account? <Link href='/user/sign-up' className='text-black text-[16px] leading-[20px] font-[400] border-b border-gray-600'>Create a new account now,</Link> <br />
                         it’s FREE! Takes less than a minute.
                     </p>
                 </div>
-
-                <form onSubmit={handleSubmit} className='flex flex-col gap-[50px] w-full sm:w-[360px]'>
+                <form className='flex flex-col gap-[50px] w-[85%]' onSubmit={handleSubmit}>
+                    {/* Inputs data */}
                     <div className='flex flex-col gap-[50px] text-[16px] font-[500] leading-[20px]'>
                         <input
-                            type="text"
-                            name="username"
-                            placeholder="Username"
-                            value={data.username}
-                            onChange={(e) => setData('username', e.target.value)}
+                            type="email"
+                            name="email"
+                            value={data.email}
+                            onChange={handleChange}
+                            placeholder='Email'
                             className='w-full outline-none px-[5px] pt-[14px] pb-[7px] border-b-[2px] border-[#A4A4A4] hover:border-[#444444] hover:bg-[#EBE8E8] focus:bg-[#EBE8E8]'
                         />
-                        {errors.username && <div className="text-red-500 text-sm">{errors.username}</div>}
+                        {errors.email && <div className="text-red-500 text-sm">{errors.email}</div>}
 
                         <input
                             type="password"
                             name="password"
-                            placeholder="Password"
                             value={data.password}
-                            onChange={(e) => setData('password', e.target.value)}
+                            onChange={handleChange}
+                            placeholder='Password'
                             className='w-full outline-none px-[5px] pt-[14px] pb-[7px] border-b-[2px] border-[#A4A4A4] hover:border-[#444444] hover:bg-[#EBE8E8] focus:bg-[#EBE8E8]'
                         />
                         {errors.password && <div className="text-red-500 text-sm">{errors.password}</div>}
                     </div>
-
-                    {/* buttons */}
+                    {/* Buttons */}
                     <div className='flex flex-col gap-[18px] text-[16px] leading-[20px]'>
                         <button
                             type="submit"
                             disabled={processing}
                             className='font-[500] bg-black text-white hover:bg-gray-800 transition-all text-center w-full py-[18px] rounded-lg'
                         >
-                            {processing ? 'Logging in...' : 'Login Now'}
+                            Login Now
                         </button>
-
-                        <button
-                            type="button"
-                            className='flex justify-center items-center gap-4 text-center w-full py-[18px] rounded-lg border-[2px] border-[#A4A4A4] font-[700]'
-                        >
+                        <button className='flex justify-center items-center gap-4 text-center w-full py-[18px] rounded-lg border-[2px] border-[#A4A4A4] font-[700]'>
                             <img src="/storage/images/User/GoogleLogo.png" alt="GoogleLogo" className='w-[25px] h-[25px]' />
                             Login with Google
                         </button>
-
+                        {/* Link */}
                         <p className='text-[#A4A4A4] text-center text-[16px] font-[700] leading-[20px]'>
-                            Forget Password? <Link href="/u/login" className='text-[#EC4137]'>Click here</Link>
+                            Forget Password <Link href="/user/login" className='text-[#EC4137]'>Click here</Link>
                         </p>
                     </div>
                 </form>

@@ -5,7 +5,7 @@ import { subDays, subWeeks, subMonths, startOfWeek, endOfWeek } from "date-fns";
 import DashboardCards from '../../components/AdminComponents/DashboardCards'
 import ChartDoughnut from '../../components/AdminComponents/ChartDoughnut'
 import RecentUpdatesTable from '../../components/AdminComponents/TableComponents/RecentUpdatesTable'
-import AdminLayout from "../../Layout/AdminLayout";
+import AgencyLayout from "../../Layout/AgencyLayout";
 import DashboardTable from "../../Components/AdminComponents/TableComponents/AppointmentsTable/DashboardTable";
 
 const AdminDashboard = () => {
@@ -84,6 +84,6 @@ const AdminDashboard = () => {
     )
 }
 
-AdminDashboard.layout = page => <AdminLayout children={page} title="Admin Dashboard" />
+AdminDashboard.layout = page => <AgencyLayout children={page} title="Admin Dashboard" />
 
 export default AdminDashboard

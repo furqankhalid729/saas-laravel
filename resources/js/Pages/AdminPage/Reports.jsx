@@ -3,7 +3,7 @@ import SalesReportChart from '../../components/AdminComponents/Charts/SalesRepor
 import ReportChart from '../../components/AdminComponents/Charts/ReportChart'
 import CustomerChart from '../../components/AdminComponents/Charts/CustomerChart'
 import GrowthChart from '../../components/AdminComponents/Charts/GrowthChart'
-import AdminLayout from '../../layout/AdminLayout';
+import AgencyLayout from '../../layout/AgencyLayout';
 
 const Reports = () => {
     return (
@@ -33,5 +33,5 @@ const Reports = () => {
         </div>
     )
 }
-Reports.layout = page => <AdminLayout children={page} title="Reports" />
+Reports.layout = page => <AgencyLayout children={page} title="Reports" />
 export default Reports

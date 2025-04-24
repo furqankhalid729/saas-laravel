@@ -13,25 +13,20 @@ import { CiSettings } from 'react-icons/ci';
 import { TbReportSearch } from "react-icons/tb";
 
 const AdminSidebarItems = [
-    { to: "/admin/dashboard", label: "Dashboard", icon: <TbLayoutDashboard /> },
-    { to: "/admin/client-list", label: "Patients", icon: <IoPeopleOutline /> },
-    { to: "/admin/appointments", label: "Appointment", icon: <FaCalendarAlt /> },
-    { to: "/admin/chat", label: "Chat", icon: <MdOutlineChat /> },
-    { to: "/admin/payments", label: "Payments", icon: <MdOutlinePayments /> },
-    { to: "/admin/reports", label: "Reports", icon: <TbReportSearch /> },
-    { to: "/admin/employee-list", label: "Employee", icon: <GoPeople /> },
-    { to: "/admin/documents", label: "Documents", icon: <MdOutlineDocumentScanner /> },
-    { to: "/admin/forms", label: "Forms", icon: <SiGoogleforms /> },
-    { to: "/admin/pending-form", label: "Pending form", icon: <RiPassPendingFill /> },
-    { to: "/admin/settings", label: "Settings", icon: <CiSettings    /> },
+    { to: route('agency.dashboard'), label: "Dashboard", icon: <TbLayoutDashboard /> },
+    { to: route('agency.clients.list'), label: "Patients", icon: <IoPeopleOutline /> },
+    { to: route('agency.appointments'), label: "Appointment", icon: <FaCalendarAlt /> },
+    { to: route('agency.chat'), label: "Chat", icon: <MdOutlineChat /> },
+    { to: route("agency.payments"), label: "Payments", icon: <MdOutlinePayments /> },
+    { to: route("agency.reports"), label: "Reports", icon: <TbReportSearch /> },
+    { to: route("agency.employee.list"), label: "Employee", icon: <GoPeople /> },
+    { to: route("agency.documents.list"), label: "Documents", icon: <MdOutlineDocumentScanner /> },
+    { to: route("agency.forms.list"), label: "Forms", icon: <SiGoogleforms /> },
+    { to: route("agency.forms.pending"), label: "Pending form", icon: <RiPassPendingFill /> },
+    { to: route("agency.settings"), label: "Settings", icon: <CiSettings    /> },
 ];
 
 const AdminSidebar = () => {
-    // const location = useLocation();
-
-    // Helper function to check if the current route matches or is a nested route
-    // const isRouteActive = (path) => location.pathname === path || location.pathname.startsWith(`${path}/`);
-
     return (
         <div className='bg-[#231E20] w-[220px] min-h-[90vh] sticky top-[82px] border-t-[1px] border-white text-white'>
             {/* Admin Sidebar */}

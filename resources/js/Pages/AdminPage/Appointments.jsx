@@ -1,6 +1,6 @@
 import React from 'react'
 import AppointmentsTable from '../../Components/AdminComponents/TableComponents/AppointmentsTable/AppointmentsTable'
-import AdminLayout from '../../Layout/AdminLayout';
+import AgencyLayout from '../../Layout/AgencyLayout';
 
 const Appointments = () => {
   return (
@@ -11,5 +11,5 @@ const Appointments = () => {
     </div>
   )
 }
-Appointments.layout = page => <AdminLayout children={page} title="Appointments" />
+Appointments.layout = page => <AgencyLayout children={page} title="Appointments" />
 export default Appointments

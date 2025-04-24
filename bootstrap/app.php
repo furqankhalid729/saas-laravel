@@ -14,9 +14,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->append([
-            \App\Http\Middleware\DetectGuard::class,
-        ]);
+        // $middleware->append([
+        //     \App\Http\Middleware\DetectGuard::class,
+        // ]);
 
         $middleware->web(append: [
             HandleInertiaRequests::class,
@@ -26,8 +26,7 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'role' => \App\Http\Middleware\CheckRole::class,
             'agency_user' => \App\Http\Middleware\CheckAgencyUser::class,
-            'check.subscription' => \App\Http\Middleware\CheckAgencySubscription::class, // Add this line
-
+            'check.subscription' => \App\Http\Middleware\CheckAgencySubscription::class,
         ]);
 
         $middleware->statefulApi();
