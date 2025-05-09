@@ -1,74 +1,106 @@
 import React from "react";
+import UserLayout from "../../../Layout/UserLayout";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { IoClose } from "react-icons/io5";
 import { RiFolderUploadFill } from "react-icons/ri";
 import { Link } from "@inertiajs/react";
+import axios from "axios";
 
 const UserIntakeForm = () => {
 
     const formik = useFormik({
         initialValues: {
-            name: "",
-            middleName: "",
-            lastName: "",
-            address: "",
+            first_name: "",
+            middle_name: "",
+            last_name: "",
+            address_line_1: "",
             city: "",
             state: "",
-            zipCode: "",
-            dateOfBirth: "",
+            zip_code: "",
+            country_of_birth:"",
+            city_of_birth:"",
+            dob: "",
+            requested_appointment_date: "",
             age: "",
             phoneNumber: "",
             email: "",
-            idType: "Passport",
-            idNumber: "",
-            hasInsurance: "no",
+            form_of_identification: "Passport",
+            document_identification_number: "",
+            has_health_insurance: "no",
             insuranceName: "",
             idFile: null,
             insuranceCardFile: null,
+            payment_type: "cash",
+            transaction_id:"387645387643",
         },
         validationSchema: Yup.object({
-            name: Yup.string().required("Required"),
-            middleName: Yup.string().required("Required"),
-            lastName: Yup.string().required("Required"),
-            address: Yup.string().required("Required"),
+            first_name: Yup.string().required("Required"),
+            last_name: Yup.string().required("Required"),
+            address_line_1: Yup.string().required("Required"),
             city: Yup.string().required("Required"),
             state: Yup.string().required("Required"),
-            zipCode: Yup.string().required("Required"),
-            dateOfBirth: Yup.date().required("Required"),
+            zip_code: Yup.string().required("Required"),
+            country_of_birth: Yup.string().required("Required"),
+            city_of_birth: Yup.string().required("Required"),
+            dob: Yup.date().required("Required"),
+            requested_appointment_date: Yup.date().required("Required"),
             age: Yup.number().required("Required"),
-            phoneNumber: Yup.string().required("Required"),
-            email: Yup.string().email("Invalid email address").required("Required"),
-            idNumber: Yup.string().required("Required"),
-            hasInsurance: Yup.string().required("Required"),
+            document_identification_number: Yup.string().required("Required"),
+            has_health_insurance: Yup.string().required("Required"),
             insuranceName: Yup.string().when("hasInsurance", {
                 is: "yes",
                 then: Yup.string().required("Required"),
             }),
-            idFile: Yup.mixed()
-                .required("ID is required")
-                .test(
-                    "fileSize",
-                    "File size is too large",
-                    (value) => value && value.size <= 1024 * 1024 * 5 // 5 MB limit
-                )
-                .test(
-                    "fileType",
-                    "Unsupported file type",
-                    (value) =>
-                        value &&
-                        ["image/jpeg", "image/png", "application/pdf"].includes(
-                            value.type
-                        )
-                ),
-            insuranceCardFile: Yup.mixed().when("hasInsurance", {
-                is: "yes",
-                then: Yup.mixed().required("Required"),
-            }),
+            payment_type: Yup.string(),
+            transaction_id:Yup.string(),
+            // idFile: Yup.mixed()
+            //     .required("ID is required")
+            //     .test(
+            //         "fileSize",
+            //         "File size is too large",
+            //         (value) => value && value.size <= 1024 * 1024 * 5 // 5 MB limit
+            //     )
+            //     .test(
+            //         "fileType",
+            //         "Unsupported file type",
+            //         (value) =>
+            //             value &&
+            //             ["image/jpeg", "image/png", "application/pdf"].includes(
+            //                 value.type
+            //             )
+            //     ),
+            // insuranceCardFile: Yup.mixed().when("hasInsurance", {
+            //     is: "yes",
+            //     then: Yup.mixed().required("Required"),
+            // }),
         }),
-        onSubmit: (values) => {
-            console.log(values);
+        onSubmit: async (values, { resetForm }) => {
+            console.log(values); // This will log the form values
+            const formData = new FormData();
+            Object.keys(values).forEach((key) => {
+                if (values[key] !== undefined && values[key] !== null) {
+                    formData.append(key, values[key]);
+                }
+            });
+            console.log("Form data:", formData);
+
+            try {
+                const response = await axios.post(route('user.forms.patient-intake.store'), formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        Accept: 'application/json',
+                    },
+                });
+
+                alert('Form submitted successfully!');
+                //resetForm();
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert(error.response?.data?.message || 'Submission failed');
+            }
         },
+
     });
 
     const handleFileChange = (event) => {
@@ -78,10 +110,6 @@ const UserIntakeForm = () => {
 
     return (
         <div className='w-full min-h-screen bg-white'>
-            {/* brand logo */}
-            <div className='w-[95%] mx-auto py-4'>
-                <img src="/storage/images/attelo-brand-name.jpeg" alt='logo' className='w-[100px] h-[100px] rounded-full ' />
-            </div>
             {/* form */}
             <div className='w-[80%] mx-auto mb-7'>
                 {/* title */}
@@ -94,27 +122,27 @@ const UserIntakeForm = () => {
                             <label>Name <span className="text-[#FF0000]">*</span></label>
                             <input
                                 type="text"
-                                name="name"
+                                name="first_name"
                                 onChange={formik.handleChange}
-                                value={formik.values.name}
+                                value={formik.values.first_name}
                                 placeholder="Enter Name"
                                 className="border border-[#808080] rounded-md py-3 px-4 outline-none  text-black"
                             />
-                            {formik.errors.name && <div className="error text-[#FF0000]">{formik.errors.name}</div>}
+                            {formik.errors.first_name && <div className="error text-[#FF0000]">{formik.errors.first_name}</div>}
                         </div>
                         {/* Middle Name */}
                         <div className="flex flex-col gap-1">
                             <label>Middle Name <span className="text-[#FF0000]">*</span></label>
                             <input
                                 type="text"
-                                name="middleName"
+                                name="middle_name"
                                 onChange={formik.handleChange}
-                                value={formik.values.middleName}
+                                value={formik.values.middle_name}
                                 placeholder="Enter Middle Name"
                                 className="border border-[#808080] rounded-md py-3 px-4 outline-none  text-black"
                             />
-                            {formik.errors.middleName && (
-                                <div className="error text-[#FF0000]">{formik.errors.middleName}</div>
+                            {formik.errors.middle_name && (
+                                <div className="error text-[#FF0000]">{formik.errors.middle_name}</div>
                             )}
                         </div>
                         {/* last Name */}
@@ -122,14 +150,14 @@ const UserIntakeForm = () => {
                             <label>Last Name <span className="text-[#FF0000]">*</span></label>
                             <input
                                 type="text"
-                                name="lastName"
+                                name="last_name"
                                 onChange={formik.handleChange}
-                                value={formik.values.lastName}
+                                value={formik.values.last_name}
                                 placeholder="Enter Last Name"
                                 className="border border-[#808080] rounded-md py-3 px-4 outline-none  text-black"
                             />
-                            {formik.errors.lastName && (
-                                <div className="error text-[#FF0000]">{formik.errors.lastName}</div>
+                            {formik.errors.last_name && (
+                                <div className="error text-[#FF0000]">{formik.errors.last_name}</div>
                             )}
                         </div>
                         {/* Address */}
@@ -137,14 +165,14 @@ const UserIntakeForm = () => {
                             <label>Enter your full address <span className="text-[#FF0000]">*</span></label>
                             <input
                                 type="text"
-                                name="address"
+                                name="address_line_1"
                                 onChange={formik.handleChange}
-                                value={formik.values.address}
+                                value={formik.values.address_line_1}
                                 placeholder="Enter Address"
                                 className="border border-[#808080] rounded-md py-3 px-4 outline-none  text-black"
                             />
-                            {formik.errors.address && (
-                                <div className="error text-[#FF0000]">{formik.errors.address}</div>
+                            {formik.errors.address_line_1 && (
+                                <div className="error text-[#FF0000]">{formik.errors.address_line_1}</div>
                             )}
                         </div>
                         {/* City */}
@@ -178,14 +206,42 @@ const UserIntakeForm = () => {
                             <label>Zip Code <span className="text-[#FF0000]">*</span></label>
                             <input
                                 type="text"
-                                name="zipCode"
+                                name="zip_code"
                                 onChange={formik.handleChange}
-                                value={formik.values.zipCode}
+                                value={formik.values.zip_code}
                                 placeholder="Enter zip code"
                                 className="border border-[#808080] rounded-md py-3 px-4 outline-none  text-black"
                             />
-                            {formik.errors.zipCode && (
-                                <div className="error text-[#FF0000]">{formik.errors.zipCode}</div>
+                            {formik.errors.zip_code && (
+                                <div className="error text-[#FF0000]">{formik.errors.zip_code}</div>
+                            )}
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <label>City of Birth <span className="text-[#FF0000]">*</span></label>
+                            <input
+                                type="text"
+                                name="city_of_birth"
+                                onChange={formik.handleChange}
+                                value={formik.values.city_of_birth}
+                                placeholder="Enter Country of Birth"
+                                className="border border-[#808080] rounded-md py-3 px-4 outline-none  text-black"
+                            />
+                            {formik.errors.city_of_birth && (
+                                <div className="error text-[#FF0000]">{formik.errors.city_of_birth}</div>
+                            )}
+                        </div>
+                        <div className="flex flex-col gap-1">
+                            <label>Country of Birth <span className="text-[#FF0000]">*</span></label>
+                            <input
+                                type="text"
+                                name="country_of_birth"
+                                onChange={formik.handleChange}
+                                value={formik.values.country_of_birth}
+                                placeholder="Enter Country of Birth"
+                                className="border border-[#808080] rounded-md py-3 px-4 outline-none  text-black"
+                            />
+                            {formik.errors.country_of_birth && (
+                                <div className="error text-[#FF0000]">{formik.errors.country_of_birth}</div>
                             )}
                         </div>
                         {/* Date of birth */}
@@ -193,14 +249,14 @@ const UserIntakeForm = () => {
                             <label>Date of Birth <span className="text-[#FF0000]">*</span></label>
                             <input
                                 type="date"
-                                name="dateOfBirth"
+                                name="dob"
                                 onChange={formik.handleChange}
-                                value={formik.values.dateOfBirth}
+                                value={formik.values.dob}
                                 placeholder="Enter Date of Birth"
                                 className="border border-[#808080] rounded-md py-3 px-4 outline-none text-black"
                             />
-                            {formik.errors.dateOfBirth && (
-                                <div className="error text-[#FF0000]">{formik.errors.dateOfBirth}</div>
+                            {formik.errors.dob && (
+                                <div className="error text-[#FF0000]">{formik.errors.dob}</div>
                             )}
                         </div>
                         {/* Age */}
@@ -216,34 +272,7 @@ const UserIntakeForm = () => {
                             />
                             {formik.errors.age && <div className="error text-[#FF0000]">{formik.errors.age}</div>}
                         </div>
-                        {/* phone no */}
-                        <div className="flex flex-col gap-1">
-                            <label>Phone Number <span className="text-[#FF0000]">*</span></label>
-                            <input
-                                type="text"
-                                name="phoneNumber"
-                                onChange={formik.handleChange}
-                                value={formik.values.phoneNumber}
-                                placeholder="Enter Phone No"
-                                className="border border-[#808080] rounded-md py-3 px-4 outline-none  text-black"
-                            />
-                            {formik.errors.phoneNumber && (
-                                <div className="error text-[#FF0000]">{formik.errors.phoneNumber}</div>
-                            )}
-                        </div>
-                        {/* Email */}
-                        <div className="flex flex-col gap-1">
-                            <label>Email <span className="text-[#FF0000]">*</span></label>
-                            <input
-                                type="email"
-                                name="email"
-                                onChange={formik.handleChange}
-                                value={formik.values.email}
-                                placeholder="Enter Email"
-                                className="border border-[#808080] rounded-md py-3 px-4 outline-none  text-black"
-                            />
-                            {formik.errors.email && <div className="error text-[#FF0000]">{formik.errors.email}</div>}
-                        </div>
+
                     </div>
                     {/* right */}
                     <div className="w-full md:w-[50%] flex flex-col gap-4 ">
@@ -286,9 +315,9 @@ const UserIntakeForm = () => {
                         <div className="flex flex-col gap-1 text-[#808080]">
                             <label>Form of Identification <span className="text-[#FF0000]">*</span></label>
                             <select
-                                name="idType"
+                                name="form_of_identification"
                                 onChange={formik.handleChange}
-                                value={formik.values.idType}
+                                value={formik.values.form_of_identification}
                                 className="border border-[#808080] rounded-md py-3 px-4 outline-none text-black "
                             >
                                 <option value="Passport">Passport</option>
@@ -300,14 +329,14 @@ const UserIntakeForm = () => {
                             <label>Document Identification Number <span className="text-[#FF0000]">*</span></label>
                             <input
                                 type="text"
-                                name="idNumber"
+                                name="document_identification_number"
                                 onChange={formik.handleChange}
-                                value={formik.values.idNumber}
+                                value={formik.values.document_identification_number}
                                 placeholder="xxxxxxxxxxxxxxxxx"
                                 className="border border-[#808080] rounded-md py-3 px-4 outline-none text-black "
                             />
-                            {formik.errors.idNumber && (
-                                <div className="error">{formik.errors.idNumber}</div>
+                            {formik.errors.document_identification_number && (
+                                <div className="error">{formik.errors.document_identification_number}</div>
                             )}
                         </div>
                         {/* Do you have health Insurance */}
@@ -317,7 +346,7 @@ const UserIntakeForm = () => {
                                 <label className="flex justify-center items-center gap-1">
                                     <input
                                         type="radio"
-                                        name="hasInsurance"
+                                        name="has_health_insurance"
                                         value="yes"
                                         onChange={formik.handleChange}
 
@@ -327,15 +356,15 @@ const UserIntakeForm = () => {
                                 <label className="flex justify-center items-center gap-1">
                                     <input
                                         type="radio"
-                                        name="hasInsurance"
+                                        name="has_health_insurance"
                                         value="no"
                                         onChange={formik.handleChange}
                                     />
                                     No
                                 </label>
                             </div>
-                            {formik.errors.hasInsurance && (
-                                <div className="error">{formik.errors.hasInsurance}</div>
+                            {formik.errors.has_health_insurance && (
+                                <div className="error">{formik.errors.has_health_insurance}</div>
                             )}
                         </div>
                         {/* Insurance name/Number */}
@@ -389,7 +418,50 @@ const UserIntakeForm = () => {
                             )}
                         </div>
 
-                        <Link href="/user/medical-info-form" type="submit" className="flex justify-center items-center w-full bg-[#EF3D35] p-3 text-white rounded-lg font-[500] leading-[24px] text-[20px]">Next</Link>
+                        <div className="flex flex-col gap-1">
+                            <label>Date of Appointment<span className="text-[#FF0000]">*</span></label>
+                            <input
+                                type="date"
+                                name="requested_appointment_date"
+                                onChange={formik.handleChange}
+                                value={formik.values.requested_appointment_date}
+                                placeholder="Enter Date of Appointment"
+                                className="border border-[#808080] rounded-md py-3 px-4 outline-none text-black"
+                            />
+                            {formik.errors.requested_appointment_date && (
+                                <div className="error text-[#FF0000]">{formik.errors.requested_appointment_date}</div>
+                            )}
+                        </div>
+
+                        {/* Payment Method */}
+                        <div className="flex flex-col gap-3">
+                            <label className="font-[700] text-[18px] leading-[26px]">Payment Method</label>
+                            <div className="flex items-center gap-3 font-[400] text-[14px] leading-[17px]">
+                                <label className="flex justify-center items-center gap-1">
+                                    <input
+                                        type="radio"
+                                        name="payment_type"
+                                        value="card"
+                                        onChange={formik.handleChange}
+                                    />
+                                    Card
+                                </label>
+                                <label className="flex justify-center items-center gap-1">
+                                    <input
+                                        type="radio"
+                                        name="payment_type"
+                                        value="cash"
+                                        onChange={formik.handleChange}
+                                    />
+                                    Cash
+                                </label>
+                            </div>
+                            {formik.errors.payment_type && (
+                                <div className="error text-[#FF0000]">{formik.errors.payment_type}</div>
+                            )}
+                        </div>
+
+                        <button type="submit" className="flex justify-center items-center w-full bg-[#EF3D35] p-3 text-white rounded-lg font-[500] leading-[24px] text-[20px]">Next</button>
                     </div>
                 </form>
             </div>
@@ -397,4 +469,5 @@ const UserIntakeForm = () => {
     )
 }
 
+UserIntakeForm.layout = page => <UserLayout children={page} title="UserIntakeForm" />
 export default UserIntakeForm

@@ -27,6 +27,7 @@ return Application::configure(basePath: dirname(__DIR__))
             'role' => \App\Http\Middleware\CheckRole::class,
             'agency_user' => \App\Http\Middleware\CheckAgencyUser::class,
             'check.subscription' => \App\Http\Middleware\CheckAgencySubscription::class,
+            'check.user.intake' => \App\Http\Middleware\CheckUserIntake::class,
         ]);
 
         $middleware->statefulApi();

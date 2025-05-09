@@ -6,14 +6,9 @@ import { FiAtSign } from "react-icons/fi";
 import { GoHash } from "react-icons/go";
 import { GrAttachment } from "react-icons/gr";
 
-let timeline = [    
-    { profileImage: "../../assets/Admin/ProfileImage.jpeg", name: "@Steve", comment: "Please check the new customers form.", dateAndTime: "Sep 27, 2024, 03:31pm" },
-    { profileImage: "../../assets/Admin/ProfileImage.jpeg", name: "@Steve", comment: "Please check the new customers form.", dateAndTime: "Sep 27, 2024, 03:31pm" },
-    { profileImage: "../../assets/Admin/ProfileImage.jpeg", name: "@Steve", comment: "Please check the new customers form.", dateAndTime: "Sep 27, 2024, 03:31pm" },
-    { profileImage: "../../assets/Admin/ProfileImage.jpeg", name: "@Steve", comment: "Please check the new customers form.", dateAndTime: "Sep 27, 2024, 03:31pm" },
-]
-        
-const TimeLine = () => {
+   
+const TimeLine = ({timeLine}) => {
+    console.log(timeLine);
     return (
         <div className='w-full'>
             {/* Timeline, comment div */}
@@ -43,16 +38,15 @@ const TimeLine = () => {
             </div>
             <p className='text-[#808080] text-center lg:text-end'>Only you and other staff can see comments</p>
             <div className='w-[93%] ml-auto mt-10 flex gap-4 flex-col'>
-                {timeline.map((data, index) => (
-                    <div key={index} className='flex justify-between items-center font-[400] text-[8px] leading-[10px]  text-[#808080]'>
+                {timeLine.map((data, index) => (
+                    <div key={index} className='flex justify-between items-center font-[400] text-[13px] leading-[10px]  text-[#808080]'>
                         <div className='flex items-center gap-2'>
-                            <img src={data.profileImage} alt="profileImage" className='w-[20px] h-[20px] rounded-full' />
                             <p>
                                 <span className='text-black'>{data.name} </span>
-                                {data.comment}
+                                {data.description}
                             </p>
                         </div>
-                        <span>{data.dateAndTime}</span>
+                        <span>{new Date(data.created_at).toLocaleString()}</span>
                     </div>
                 ))}
             </div>

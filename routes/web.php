@@ -70,11 +70,14 @@ Route::prefix('agency')->name('agency.')->middleware(['auth:web', 'check.subscri
     // Clients
     Route::prefix('clients')->name('clients.')->group(function () {
         Route::get('/', [AgencyClientController::class, 'viewClientList'])->name('list');
+        Route::get('/detail/{id}', [AgencyClientController::class, 'viewClientDetail'])->name('detail');
         Route::get('/form', [AgencyClientController::class, 'showClientForm'])->name('form');
         Route::get('/new-forms', [AgencyClientController::class, 'viewNewClientForms'])->name('new.form');
     });
     // Appointments
-    Route::get('/appointments', [AgencyAppointmentController::class, 'viewAppointments'])->name('appointments');
+    Route::get('/appointments', [AgencyAppointmentController::class, 'index'])->name('appointment.index');
+    Route::get('/appointments/add', [AgencyAppointmentController::class, 'create'])->name('appointment.create');
+    Route::post('/appointments/add', [AgencyAppointmentController::class, 'store'])->name('appointment.store');
     // Chat
     Route::get('/chat', [AgencyChatController::class, 'viewChat'])->name('chat');
     // Payments
@@ -85,8 +88,8 @@ Route::prefix('agency')->name('agency.')->middleware(['auth:web', 'check.subscri
 
     // Employees
     Route::prefix('employee')->name('employee.')->group(function () {
-        Route::get('/', [AgencyEmployeeController::class, 'viewEmployeeList'])->name('list');
-        Route::get('/add-new', [AgencyEmployeeController::class, 'showAddEmployeeForm'])->name('add');
+        Route::get('/', [AgencyEmployeeController::class, 'viewEmployeeList'])->name('index');
+        Route::get('/add-new', [AgencyEmployeeController::class, 'showAddEmployeeForm'])->name('create');
     });
     // Documents
     Route::prefix('documents')->name('documents.')->group(function () {
@@ -95,9 +98,15 @@ Route::prefix('agency')->name('agency.')->middleware(['auth:web', 'check.subscri
     });
     // Forms
     Route::prefix('forms')->name('forms.')->group(function () {
-        Route::get('/', [AgencyFormController::class, 'viewForms'])->name('list');
-        Route::get('/add-new-form-field', [AgencyFormController::class, 'showAddFormField'])->name('add');
+        Route::get('/', [AgencyFormController::class, 'index'])->name('list');
+        Route::get('/view/{id}', [AgencyFormController::class, 'show'])->name('show');
+        Route::get('/add-new-form', [AgencyFormController::class, 'showAddFormField'])->name('create');
         Route::get('/pending-form', [AgencyFormController::class, 'viewPendingForms'])->name('pending');
+
+        Route::post('/add-new-form', [AgencyFormController::class, 'storeForm'])->name('store');
+        Route::post('/request-form', [AgencyFormController::class, 'requestForm'])->name('request');
+        
+        Route::delete('/delete/{id}', [AgencyFormController::class, 'destroy'])->name('delete');
     });
     // Settings
     Route::get('/settings', [AgencySettingController::class, 'viewSettings'])->name('settings');
@@ -106,12 +115,13 @@ Route::prefix('agency')->name('agency.')->middleware(['auth:web', 'check.subscri
 });
 
 
-Route::prefix('user')->name('user.')->middleware(['auth:web'])->group(function () {
+Route::prefix('user')->name('user.')->middleware(['auth:web','check.user.intake'])->group(function () {
     // Dashboard
     Route::get('/dashboard', [UserDashboardController::class, 'showDashboard'])->name('dashboard');
     // Forms
-    Route::prefix('forms')->name('forms_')->controller(UserFormController::class)->group(function () {
-        Route::get('/intake-form', 'showIntakeForm')->name('intake_form');
+    Route::prefix('forms')->name('forms.')->controller(UserFormController::class)->group(function () {
+        Route::get('/patient-intake', [UserFormController::class, 'showIntakeForm'])->name('patient-intake.create');
+        Route::post('/patient-intake', [UserFormController::class, 'storeIntakeFormDetails'])->name('patient-intake.store');
         Route::get('/medical-info-form', 'showMedicalInfoForm')->name('medical_info_form');
         Route::get('/requested', 'showRequestedForms')->name('requested');
         Route::get('/requested/edit', 'editRequestedForm')->name('edit_requested');

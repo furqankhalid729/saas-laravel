@@ -20,7 +20,8 @@ let SettingsBranding = [
   { Number: 5, icon: <TbApiApp />, Name: "API Generate" },
 ]
 
-const Settings = () => {
+const Settings = ({agency}) => {
+  console.log(agency)
   const [settingPage, SetSettingPage] = useState(1);
   console.log("Setting", settingPage);
   return (
@@ -36,7 +37,7 @@ const Settings = () => {
           <div className='flex gap-2 items-center px-10 py-3 bg-[#f7f7f7] border-b-[0.5px] border-[#808080]'>
             <img src="/storage/Images/attelo-brand-name.jpeg" alt="logoImg" className='w-[24px] h-[24px] rounded' />
             <div className='flex gap-1 flex-col'>
-              <h1 className='font-[500] text-[16px] leading-[19px]'>ATELLO</h1>
+              <h1 className='font-[500] text-[16px] leading-[19px]'>{ agency.name }</h1>
               <p className='font-[400] text-[10px] leading-[12px] text-[#808080]'>Developers Company</p>
             </div>
           </div>
@@ -59,7 +60,9 @@ const Settings = () => {
           }
           {settingPage === 2 &&
             <div>
-              <Plans />
+              <Plans 
+                agency={agency}
+              />
             </div>
           }
           {settingPage === 3 &&

@@ -15,11 +15,11 @@ import { TbReportSearch } from "react-icons/tb";
 const AdminSidebarItems = [
     { to: route('agency.dashboard'), label: "Dashboard", icon: <TbLayoutDashboard /> },
     { to: route('agency.clients.list'), label: "Patients", icon: <IoPeopleOutline /> },
-    { to: route('agency.appointments'), label: "Appointment", icon: <FaCalendarAlt /> },
+    { to: route('agency.appointment.index'), label: "Appointment", icon: <FaCalendarAlt /> },
     { to: route('agency.chat'), label: "Chat", icon: <MdOutlineChat /> },
     { to: route("agency.payments"), label: "Payments", icon: <MdOutlinePayments /> },
     { to: route("agency.reports"), label: "Reports", icon: <TbReportSearch /> },
-    { to: route("agency.employee.list"), label: "Employee", icon: <GoPeople /> },
+    { to: route("agency.employee.index"), label: "Employee", icon: <GoPeople /> },
     { to: route("agency.documents.list"), label: "Documents", icon: <MdOutlineDocumentScanner /> },
     { to: route("agency.forms.list"), label: "Forms", icon: <SiGoogleforms /> },
     { to: route("agency.forms.pending"), label: "Pending form", icon: <RiPassPendingFill /> },

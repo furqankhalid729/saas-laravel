@@ -2,7 +2,7 @@ import React from 'react'
 import AgencyLayout from "../../Layout/AgencyLayout";
 import ClientListTable from '../../components/AdminComponents/TableComponents/ClientListTable'
 
-const ClientList = () => {
+const ClientList = ({agencyUsers}) => {
     return (
         <div className='w-full'>
             <div className='w-[93%] my-7 mx-auto bg-white grid grid-cols-1'>
@@ -23,7 +23,9 @@ const ClientList = () => {
                             <button className='font-[400] text-[12px] leading-[14px] py-1 px-3 text-nowrap hover:bg-black hover:text-white hover:cursor-pointer rounded-full border border-black'>Completed</button>
                         </div>
                     </div>
-                    <ClientListTable/>
+                    <ClientListTable 
+                        agencyUsers={agencyUsers}
+                    />
                 </div>
             </div>
         </div>

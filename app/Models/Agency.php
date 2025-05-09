@@ -12,6 +12,20 @@ class Agency extends Model
         'settings' => 'array',
     ];
 
+    protected static function booted()
+    {
+        static::created(function ($agency) {
+            AgencySetting::create([
+                'agency_id' => $agency->id,
+                'settings' => [
+                    'userPlan' => [
+                        'price' => 30,
+                    ],
+                ],
+            ]);
+        });
+    }
+
     public function agencyUsers()
     {
         return $this->hasMany(AgencyUser::class);
@@ -26,5 +40,19 @@ class Agency extends Model
     public function user()
     {
         return $this->belongsTo(User::class);  // One agency can have many users
+    }
+    public function forms()
+    {
+        return $this->hasMany(AgencyForm::class);
+    }
+
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class);
+    }
+
+    public function agencySettings()
+    {
+        return $this->hasOne(AgencySetting::class);
     }
 }

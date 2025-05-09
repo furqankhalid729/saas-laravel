@@ -18,7 +18,7 @@ const EmployeeListTable = () => {
                 {/* heading */}
                 <div className='flex gap-4 justify-between items-center h-[60px] text-nowrap'>
                     <h1 className='font-[700] text-[26px] sm:text-[36px] leading-[44px] px-2'>Employee List</h1>
-                    <Link href="/admin/employee-list/add-new-employee" className='flex items-center gap-1 text-white bg-black px-3 py-1 rounded-lg'>
+                    <Link href={route('agency.employee.create')} className='flex items-center gap-1 text-white bg-black px-3 py-1 rounded-lg'>
                         <GoPlusCircle /> Add new Employee
                     </Link>
                 </div>

@@ -10,4 +10,7 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    define: {
+        global: 'window', // Polyfill global as window in the browser
+      },
 });

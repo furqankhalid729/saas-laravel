@@ -123,4 +123,6 @@ class UserAuthController extends Controller
         $request->session()->flush();
         // return redirect()->back()->with('message', 'Session flushed!');
     }
+
+
 }

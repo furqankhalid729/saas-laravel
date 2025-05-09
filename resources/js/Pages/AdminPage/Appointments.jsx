@@ -2,11 +2,13 @@ import React from 'react'
 import AppointmentsTable from '../../Components/AdminComponents/TableComponents/AppointmentsTable/AppointmentsTable'
 import AgencyLayout from '../../Layout/AgencyLayout';
 
-const Appointments = () => {
+const Appointments = ({appointments}) => {
   return (
     <div className='w-full'>
         <div className='w-[93%] mx-auto my-7'>
-            <AppointmentsTable/>
+            <AppointmentsTable
+                appointments={appointments}
+            />
         </div>
     </div>
   )

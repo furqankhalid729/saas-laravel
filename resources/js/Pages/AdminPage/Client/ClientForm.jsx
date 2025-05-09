@@ -30,8 +30,8 @@ let PagesNumber = [
     { Number: 9, PageName: "Relatives" },
 ]
 
-const ClientForm = () => {
-
+const ClientForm = ({agencyUser, agencyFroms,requestedForms, appointments, timeLine}) => {
+    console.log(agencyUser);
     const [currentPage, setCurrentPage] = useState(1);
 
     return (
@@ -42,7 +42,7 @@ const ClientForm = () => {
                     {/* heading */}
                     <div className='flex items-center text-nowrap gap-2'>
                         <IoIosArrowRoundBack className='text-[30px]' onClick={() => setCurrentPage(currentPage - 1)} />
-                        <h1 className='font-[700] text-[16px] leading-[19px]'>Adam Smith</h1>
+                        <h1 className='font-[700] text-[16px] leading-[19px]'>{agencyUser.user.name}</h1>
                         <p className='font-[400] text-[8px] leading-[9px] p-1 bg-[#bebebe]'>Paid</p>
                     </div>
                     <ProgressBar currentPage={currentPage} />
@@ -64,8 +64,14 @@ const ClientForm = () => {
                         {currentPage === 2 && (
                             <div className='flex flex-col gap-[20px]'>
                                 <AdditionalDetails />
-                                <FormsTable />
-                                <AppointmentClientTable />
+                                <FormsTable 
+                                    agencyFroms={agencyFroms}
+                                    agencyUser = {agencyUser}
+                                    requestedForms ={requestedForms}
+                                />
+                                <AppointmentClientTable 
+                                    appointments={appointments}
+                                />
                                 <SoftNotesTable />
                             </div>
                         )}
@@ -97,7 +103,9 @@ const ClientForm = () => {
                         )}
                         {currentPage === 7 && (
                             <div>
-                                <TimeLine />
+                                <TimeLine 
+                                    timeLine={timeLine}
+                                />
                             </div>
                         )}
                         {currentPage === 8 && (
@@ -113,7 +121,7 @@ const ClientForm = () => {
                     </div>
                     {/* right side Profile div */}
                     <div className='w-full sm:w-[60%] lg:w-[30%]'>
-                        <Profile currentPage={currentPage} setCurrentPage={setCurrentPage} />
+                        <Profile agencyUser={agencyUser} currentPage={currentPage} setCurrentPage={setCurrentPage} />
                     </div>
                 </div>
             </div>

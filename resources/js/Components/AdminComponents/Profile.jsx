@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
-const Profile = ({ currentPage, setCurrentPage }) => {
-    console.log(currentPage);
+const Profile = ({ currentPage, setCurrentPage, agencyUser }) => {
+    console.log(agencyUser);
 
     const [status, setStatus] = useState(false);
 
@@ -12,33 +12,33 @@ const Profile = ({ currentPage, setCurrentPage }) => {
     return (
         <div className='w-full bg-white rounded-md shadow-md'>
             <div className='w-[80%] mx-auto py-[20px]'>
-                <span className='bg-[#ded7d7] px-1 rounded-full'>#1002</span>
+                <span className='bg-[#ded7d7] px-1 rounded-full'>#{agencyUser.user.id}</span>
                 {/* Profile pic and name */}
                 <div className='mb-6 flex flex-col justify-center items-center gap-2'>
                     <img src="/storage/Images/Admin/ProfileImage.jpeg" alt="profileImage" className='w-[120px] h-[120px] rounded-full bg-cover' />
-                    <h1 className='font-[600] text-[20px] leading-[24px]'>Adam Smith</h1>
+                    <h1 className='font-[600] text-[20px] leading-[24px]'>{agencyUser.user.name}</h1>
                 </div>
                 {/* Details of profile */}
                 <div className='flex flex-col gap-5 font-[400] text-[14px] leading-[16px]'>
                     {/* Email */}
                     <div className='flex flex-col gap-1 '>
                         <h4>Email</h4>
-                        <p className='text-[#808080]'>Adamsmith9@gmail.com</p>
+                        <p className='text-[#808080]'>{agencyUser.user.email}</p>
                     </div>
                     {/* Phone no */}
                     <div className='flex flex-col gap-1'>
                         <h4>Phone no</h4>
-                        <p className='text-[#808080]'>+1-675-675-786</p>
+                        <p className='text-[#808080]'>{agencyUser.user.phone_number}</p>
                     </div>
                     {/* Age */}
                     <div className='flex flex-col gap-1'>
                         <h4>Age</h4>
-                        <p className='text-[#808080]'>25</p>
+                        <p className='text-[#808080]'>{agencyUser.user.age}</p>
                     </div>
                     {/* Gender */}
                     <div className='flex flex-col gap-1'>
                         <h4>Gender</h4>
-                        <p className='text-[#808080]'>Male</p>
+                        <p className='text-[#808080]'>{agencyUser.user.gender}</p>
                     </div>
                     {/* Date of Birth */}
                     <div className='flex flex-col gap-1'>
@@ -53,7 +53,7 @@ const Profile = ({ currentPage, setCurrentPage }) => {
                     {/* Address */}
                     <div className='flex flex-col gap-1'>
                         <h4>Address</h4>
-                        <p className='text-[#808080]'>288 Golf Course Drive West Rohnert Park</p>
+                        <p className='text-[#808080]'>{agencyUser.user.address}</p>
                     </div>
                     {/* Preferred date */}
                     <div className='flex flex-col gap-1'>

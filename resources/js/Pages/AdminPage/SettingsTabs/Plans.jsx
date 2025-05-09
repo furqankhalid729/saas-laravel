@@ -1,9 +1,8 @@
 import React from 'react'
 import { RiBillLine } from "react-icons/ri";
 import { AiOutlineExclamationCircle } from "react-icons/ai";
-// import mastercard from "../../../assets/Admin/settings/mastercard.png"
 
-const Plans = () => {
+const Plans = ({ agency }) => {
     return (
         <div>
             <h1 className='font-[700] text-[24px] leading-[28px] py-4'>Plan</h1>
@@ -58,6 +57,22 @@ const Plans = () => {
                             </div>
                         </div>
                         <button className='px-3 border border-[#808080] roundedfont-[400] text-[12px] leading-[14px]'>Update</button>
+                    </div>
+                </div>
+            </div>
+
+            {/* User Plans */}
+            <div className='mt-7 w-full p-5 bg-white rounded-lg border-[0.5px] border-[#808080]'>
+                <h4 className='mb-5 font-[600] text-[16px] leading-[19px]'>User Inital Plan</h4>
+                <div className='w-full p-5 border-[0.5px] border-[#808080] rounded-lg'>
+                    <div className='pb-6 border-b-[0.5px] border-[#808080] flex flex-col gap-5'>
+                        <div className='flex gap-2 items-center'>
+                            <RiBillLine className='text-[20px]' />
+                            <div className='flex flex-col gap-1 text-[#808080] font-[400] text-[16px] leading-[20px]'>
+                                <p>User Plans</p>
+                                <p>Inital Payment: ${agency.agency_settings.settings.userPlan.price }</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

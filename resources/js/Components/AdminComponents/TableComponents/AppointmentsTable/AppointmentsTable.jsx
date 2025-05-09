@@ -1,16 +1,8 @@
 import React from 'react'
+import { Link, router } from '@inertiajs/react';
 
-let AppointPageData = [
-  { name: "Steve Smith", Date: "Oct 26, 2024", time: "10:00 AM", Status: "Paid", color: "text-[#EA4232]" },
-  { name: "Steve Smith", Date: "Oct 26, 2024", time: "10:00 AM", Status: "Unpaid", color: "text-[#184400]" },
-  { name: "Steve Smith", Date: "Oct 26, 2024", time: "10:00 AM", Status: "Paid", color: "text-[#EA4232]" },
-  { name: "Steve Smith", Date: "Oct 26, 2024", time: "10:00 AM", Status: "Paid", color: "text-[#EA4232]" },
-  { name: "Steve Smith", Date: "Oct 26, 2024", time: "10:00 AM", Status: "Unpaid", color: "text-[#184400]" },
-  { name: "Steve Smith", Date: "Oct 26, 2024", time: "10:00 AM", Status: "Unpaid", color: "text-[#184400]" },
-]
 
-const AppointmentsTable = () => {
-
+const AppointmentsTable = ({ appointments }) => {
   return (
     <div className='w-full'>
       <div className='w-full h-[600px] bg-white rounded-lg shadow-2xl'>
@@ -22,6 +14,14 @@ const AppointmentsTable = () => {
               <p className='px-3 hover:bg-black hover:text-white border border-black rounded-full'>All</p>
               <p className='px-3 hover:bg-black hover:text-white border border-black rounded-full'>Paid</p>
               <p className='px-3 hover:bg-black hover:text-white border border-black rounded-full'>Unpaid</p>
+            </div>
+            <div className='flex items-center gap-3'>
+              <Link
+                href={route('agency.appointment.create')}
+                className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition"
+              >
+                Add Appointment
+              </Link>
             </div>
           </div>
           <div>
@@ -35,12 +35,12 @@ const AppointmentsTable = () => {
                   <td className='w-[20%] text-nowrap px-3 text-center'>Status</td>
                   <td className='w-[20%] text-nowrap px-3'>Action</td>
                 </tr>
-                {AppointPageData.map((data, index) => (
+                {appointments.map((data, index) => (
                   <tr key={index} className='text-[14px] leading-[16px] font-[500] border-b text-[#808080] border-[#808080] h-[40px]'>
-                    <td className='w-[20%] text-nowrap px-3'>{data.name}</td>
-                    <td className='w-[20%] text-nowrap px-3 text-center'>{data.Date}</td>
-                    <td className='w-[20%] text-nowrap text-center px-3'>{data.time}</td>
-                    <td className={`w-[20%] text-nowrap px-3 text-center ${data.color}`}>{data.Status}</td>
+                    <td className='w-[20%] text-nowrap px-3'>{data.user.name}</td>
+                    <td className='w-[20%] text-nowrap px-3 text-center'>{new Date(data.appointment_date).toDateString()}</td>
+                    <td className='w-[20%] text-nowrap text-center px-3'>{data.appointment_time}</td>
+                    <td className={`w-[20%] text-nowrap px-3 text-center ${data.payment_status == "unpaid" ? 'text-red-600' : 'text-green-500'}`}>{data.payment_status}</td>
                     <td className='w-[20%] text-nowrap px-3 underline'>View detail</td>
                   </tr>
                 ))}

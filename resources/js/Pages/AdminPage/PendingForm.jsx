@@ -2,11 +2,13 @@ import React from 'react'
 import PendingFormTable from '../../components/AdminComponents/TableComponents/PendingFormTable';
 import AgencyLayout from '../../layout/AgencyLayout';
 
-const PendingForm = () => {
+const PendingForm = ({pending_forms}) => {
     return (
         <div className='w-full'>
             <div className='w-[93%] mx-auto my-7'>
-                <PendingFormTable />
+                <PendingFormTable 
+                    pending_forms={pending_forms}
+                />
             </div>
         </div>
     )

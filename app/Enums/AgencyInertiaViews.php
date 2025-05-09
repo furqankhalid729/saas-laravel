@@ -5,9 +5,11 @@ namespace App\Enums;
 enum AgencyInertiaViews: string
 {
     case AgencyAppointmentsPage = 'AdminPage/Appointments';
+    case AgencyAddAppointment = 'AdminPage/AddAppointment';
     case AgencyClientChatPage = 'AdminPage/Client/Chat';
     case AgencyClientListPage = 'AdminPage/ClientList';
-    case AgencyClientFormPage = 'AdminPage/Client/ClientForm';
+    case AgencyClientDetailsPage = 'AdminPage/Client/ClientForm';
+    //case AgencyClientFormPage = 'AdminPage/Client/ClientForm';
     case AgencyClientNewFormsPage = 'AdminPage/Forms/RequestNewForm';
     case Agency_Sign_Up = 'AdminPage/SignUp';
     case Agency_Login = 'AdminPage/Login';
@@ -17,6 +19,7 @@ enum AgencyInertiaViews: string
     case Agency_Employee_List = 'AdminPage/EmployeeList';
     case Agency_Add_Employee_Form = 'AdminPage/AddNewEmployee';
     case Agency_Forms_List = 'AdminPage/Forms/Forms';
+    case Agency_View_Form = 'AdminPage/Forms/ViewForm';
     case Agency_Add_Form_Field = 'AdminPage/Forms/AddNewField';
     case Agency_Pending_Forms = 'AdminPage/PendingForm';
     case Agency_Lab_Results = 'AdminPage/LabsResult';

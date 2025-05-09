@@ -20,4 +20,7 @@ enum UserInertiaViews: string
     case USER_LABS_RESULT = 'UserPage/LabsResult';
     case USER_FAMILY_MEMBERS = 'UserPage/OtherMembers';
     case USER_ADD_FAMILY_MEMBER = 'UserPage/AddMembers';
+    
+
+    //case USER_INTAKE_FORM='UserPage/Forms/PatientIntake';
 }

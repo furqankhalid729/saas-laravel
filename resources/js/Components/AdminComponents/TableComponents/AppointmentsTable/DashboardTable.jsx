@@ -9,7 +9,7 @@ let DashAppointData = [
     { name: "Steve Smith", Date: "Oct 26, 2024", time: "10:00 AM", Status: "New" },
 ]
 
-const DashboardTable = () => {
+const DashboardTable = ({agencyData}) => {
     return (
         <div className='w-full'>
             {/* {location.pathname === "/admin/dashboard" && */}
@@ -28,12 +28,12 @@ const DashboardTable = () => {
                                     <td className='w-[20%] text-nowrap px-3'>Status</td>
                                     <td className='w-[20%] text-nowrap px-3'>Action</td>
                                 </tr>
-                                {DashAppointData.map((data, index) => (
+                                {agencyData.appointments.map((data, index) => (
                                     <tr key={index} className='text-[14px] leading-[16px] font-[500] border-b text-[#808080] border-[#808080] h-[40px]'>
-                                        <td className='w-[20%] text-nowrap px-3'>{data.name}</td>
-                                        <td className='w-[20%] text-nowrap px-3'>{data.Date}</td>
-                                        <td className='w-[20%] text-nowrap px-3'>{data.time}</td>
-                                        <td className='w-[20%] text-nowrap px-3 text-[#1E5600]'>{data.Status}</td>
+                                        <td className='w-[20%] text-nowrap px-3'>{data.user.name}</td>
+                                        <td className='w-[20%] text-nowrap px-3'>{new Date(data.appointment_date).toDateString()}</td>
+                                        <td className='w-[20%] text-nowrap px-3'>{data.appointment_time}</td>
+                                        <td className={`w-[20%] text-nowrap px-3 ${data.payment_status == "unpaid" ? 'text-red-500' : 'text-[#1E5600]' } `}>{data.payment_status}</td>
                                         <td className='w-[20%] text-nowrap px-3'>View detail</td>
                                     </tr>
                                 ))}

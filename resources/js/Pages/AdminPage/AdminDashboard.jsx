@@ -8,8 +8,7 @@ import RecentUpdatesTable from '../../components/AdminComponents/TableComponents
 import AgencyLayout from "../../Layout/AgencyLayout";
 import DashboardTable from "../../Components/AdminComponents/TableComponents/AppointmentsTable/DashboardTable";
 
-const AdminDashboard = () => {
-
+const AdminDashboard = ({agencyData}) => {
     const [startDate, setStartDate] = useState(new Date());
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -39,7 +38,7 @@ const AdminDashboard = () => {
                     <div className='flex items-center gap-2'>
                         <img src="/storage/Images/attelo-brand-name.jpeg" alt="brandLogo" className='w-[75px] h-[75px] rounded-xl' />
                         <div className='flex flex-col gap-1'>
-                            <h1 className='font-[700] text-[32px] leading-[38px]'>ATELLO</h1>
+                            <h1 className='font-[700] text-[32px] leading-[38px]'>{agencyData.name}</h1>
                             <p className='text-[#808080] font-[400] text-[13px] leading-[16px]'>Developers Company</p>
                         </div>
                     </div>
@@ -75,7 +74,9 @@ const AdminDashboard = () => {
                 </div>
                 <DashboardCards />
                 <div className='flex flex-col-reverse lg:flex-row gap-4 '>
-                    <DashboardTable />
+                    <DashboardTable 
+                        agencyData={agencyData}
+                    />
                     <ChartDoughnut />
                 </div>
                 <RecentUpdatesTable />
