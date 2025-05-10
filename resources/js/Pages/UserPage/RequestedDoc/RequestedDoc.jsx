@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { FaAngleRight } from 'react-icons/fa6'
-import RequestedDocTable from '../../Components/UserComponents/TablesComponents/RequestedDocTable';
+import RequestedDocTable from '../../../Components/UserComponents/TablesComponents/RequestedDocTable';
 
 
 const RequestedDoc = () => {
