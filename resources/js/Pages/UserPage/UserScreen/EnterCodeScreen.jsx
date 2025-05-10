@@ -1,5 +1,5 @@
 import React from 'react'
-import EnterCode from '../../../components/UserComponents/EnterCode'
+import EnterCode from '../../Components/UserComponents/EnterCode'
 
 
 const EnterCodeScreen = () => {

@@ -1,5 +1,5 @@
 import React from 'react'
-import SecurityCodes from '../../../components/UserComponents/SecurityCodes'
+import SecurityCodes from '../../Components/UserComponents/SecurityCodes'
 
 const TextCodeScreen = () => {
     return (

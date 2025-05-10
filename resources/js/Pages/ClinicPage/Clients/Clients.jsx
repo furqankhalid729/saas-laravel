@@ -1,6 +1,6 @@
 import React from 'react'
 import ClinicLayout from "../../../Layout/ClinicLayout";
-import ClientsTable from '../../../components/ClinicComponents/TablesComponents/ClientsTable'
+import ClientsTable from '../../Components/ClinicComponents/TablesComponents/ClientsTable'
 
 const Clients = () => {
     return (
