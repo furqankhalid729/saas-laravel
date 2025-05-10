@@ -1,6 +1,6 @@
 import React from 'react'
 import AgencyLayout from "../../Layout/AgencyLayout";
-import ClientListTable from '../../components/AdminComponents/TableComponents/ClientListTable'
+import ClientListTable from '../../Components/AdminComponents/TableComponents/ClientListTable'
 
 const ClientList = ({agencyUsers}) => {
     return (
