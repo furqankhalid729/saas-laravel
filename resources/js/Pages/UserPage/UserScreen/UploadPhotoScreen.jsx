@@ -1,5 +1,5 @@
 import React from 'react'
-import UploadPic from '../../Components/UserComponents/UploadPic'
+import UploadPic from '../../../Components/UserComponents/UploadPic'
 
 
 const UploadPhotoScreen = () => {
