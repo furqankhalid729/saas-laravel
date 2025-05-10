@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaAngleRight } from "react-icons/fa6";
 import CollabDocumentsTable from '../../Components/AdminComponents/TableComponents/CollabDocumentsTable';
-import AgencyLayout from '../../layout/AgencyLayout';
+import AgencyLayout from '../../Layout/AgencyLayout';
 
 
 const CollabDocuments = () => {

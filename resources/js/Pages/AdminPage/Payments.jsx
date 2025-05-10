@@ -1,7 +1,7 @@
 import React from 'react'
 import PaymentCards from '../../Components/AdminComponents/PaymentCards'
 import RecentTransactionTable from '../../Components/AdminComponents/TableComponents/RecentTransactionTable';
-import AgencyLayout from '../../layout/AgencyLayout';
+import AgencyLayout from '../../Layout/AgencyLayout';
 
 const Payments = () => {
     return (

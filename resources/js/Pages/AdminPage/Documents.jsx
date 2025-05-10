@@ -1,6 +1,6 @@
 import React from 'react'
 import DocumentsTable from '../../Components/AdminComponents/TableComponents/DocumentsTable'
-import AgencyLayout from '../../layout/AgencyLayout';
+import AgencyLayout from '../../Layout/AgencyLayout';
 
 const Documents = () => {
     return (

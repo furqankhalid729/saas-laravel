@@ -2,7 +2,7 @@ import React from 'react'
 import { FiPlusCircle } from "react-icons/fi";
 import FormsCard from "../../../Components/AdminComponents/Forms/FormsCard"
 import { Link } from '@inertiajs/react';
-import AgencyLayout from '../../../layout/AgencyLayout';
+import AgencyLayout from '../../../Layout/AgencyLayout';
 
 const Forms = ({forms}) => {
     console.log(forms);

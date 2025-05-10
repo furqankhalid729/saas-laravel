@@ -1,6 +1,6 @@
 import React from 'react'
 import EmployeeListTable from '../../Components/AdminComponents/TableComponents/EmployeeListTable';
-import AgencyLayout from '../../layout/AgencyLayout';
+import AgencyLayout from '../../Layout/AgencyLayout';
 
 const EmployeeList = () => {
   return (

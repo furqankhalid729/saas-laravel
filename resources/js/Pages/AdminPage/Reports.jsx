@@ -3,7 +3,7 @@ import SalesReportChart from '../../Components/AdminComponents/Charts/SalesRepor
 import ReportChart from '../../Components/AdminComponents/Charts/ReportChart'
 import CustomerChart from '../../Components/AdminComponents/Charts/CustomerChart'
 import GrowthChart from '../../Components/AdminComponents/Charts/GrowthChart'
-import AgencyLayout from '../../layout/AgencyLayout';
+import AgencyLayout from '../../Layout/AgencyLayout';
 
 const Reports = () => {
     return (
