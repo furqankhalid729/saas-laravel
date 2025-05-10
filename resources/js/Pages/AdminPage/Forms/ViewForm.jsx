@@ -1,6 +1,6 @@
 import { ReactFormGenerator } from 'react-form-builder2';
 import 'react-form-builder2/dist/app.css';
-import AgencyLayout from '../../Layout/AgencyLayout';
+import AgencyLayout from '../../../Layout/AgencyLayout';
 
 const ViewForm = ({ form }) => {
     return (

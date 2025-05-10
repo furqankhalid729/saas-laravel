@@ -1,6 +1,6 @@
 import React from 'react'
 import AddAppointmentForm from '../../Components/AdminComponents/AddAppointmentForm'
-import AgencyLayout from '../Layout/AgencyLayout';
+import AgencyLayout from '../../Layout/AgencyLayout';
 
 const AddAppointment = ({agencyUsers}) => {
   console.log(agencyUsers)
