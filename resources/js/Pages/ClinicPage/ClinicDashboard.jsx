@@ -4,9 +4,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { subDays, subWeeks, subMonths, startOfWeek, endOfWeek } from "date-fns";
 import ClinicDashboardCard from '../../Components/ClinicComponents/ClinicDashboardCard'
-import LineChart from '../../../Components/ClinicComponents/LineChart'
-import BarChart from '../../../Components/ClinicComponents/BarChart'
-import DashboardTable from '../../../Components/ClinicComponents/TablesComponents/DashboardTable'
+import LineChart from '../../Components/ClinicComponents/LineChart'
+import BarChart from '../../Components/ClinicComponents/BarChart'
+import DashboardTable from '../../Components/ClinicComponents/TablesComponents/DashboardTable'
 
 const ClinicDashboard = () => {
 
