@@ -1,5 +1,5 @@
 import React from 'react';
-import SignUpForm from '../../Components/UserComponents/SignUpForm';
+import SignUpForm from '../../../Components/UserComponents/SignUpForm';
 import { usePage } from '@inertiajs/react';
 
 const SignUpScreen = () => {
