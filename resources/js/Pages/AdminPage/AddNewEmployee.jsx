@@ -1,7 +1,7 @@
 import React from 'react'
 import AddEmployee from '../../Components/AdminComponents/AddEmployee'
 import EmployeePartialAccess from '../../Components/AdminComponents/EmployeePartialAccess'
-import AgencyLayout from '../../layout/AgencyLayout';
+import AgencyLayout from '../../Layout/AgencyLayout';
 
 const AddNewEmployee = () => {
     return (
