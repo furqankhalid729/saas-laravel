@@ -1,19 +1,19 @@
 import React, { useState } from 'react'
-import FormsTable from '../../../components/AdminComponents/TableComponents/FormsTable';
-import Profile from '../../../components/AdminComponents/Profile';
-import AdditionalDetails from '../../../components/AdminComponents/AdditionalDetails';
-import LabsResultTable from '../../../components/AdminComponents/TableComponents/LabsResultTable';
-import CustomerPlan from '../../../components/AdminComponents/CustomerPlan';
+import FormsTable from '../../../Components/AdminComponents/TableComponents/FormsTable';
+import Profile from '../../../Components/AdminComponents/Profile';
+import AdditionalDetails from '../../../Components/AdminComponents/AdditionalDetails';
+import LabsResultTable from '../../../Components/AdminComponents/TableComponents/LabsResultTable';
+import CustomerPlan from '../../../Components/AdminComponents/CustomerPlan';
 import { IoIosArrowRoundBack } from "react-icons/io";
-import VaccineTable from '../../../components/AdminComponents/TableComponents/VaccineTable';
+import VaccineTable from '../../../Components/AdminComponents/TableComponents/VaccineTable';
 import AppointmentClientTable from '../../../Components/AdminComponents/TableComponents/AppointmentsTable/AppointmentClientTable';
-import Chatbot from '../../../components/AdminComponents/Chatbot';
-import TimeLine from '../../../components/AdminComponents/TimeLine';
-import PaymentTable from '../../../components/AdminComponents/TableComponents/PaymentTable';
-import RelativesTable from '../../../components/AdminComponents/TableComponents/RelativesTable';
-import SoftNotesTable from '../../../components/AdminComponents/TableComponents/SoftNotesTable';
+import Chatbot from '../../../Components/AdminComponents/Chatbot';
+import TimeLine from '../../../Components/AdminComponents/TimeLine';
+import PaymentTable from '../../../Components/AdminComponents/TableComponents/PaymentTable';
+import RelativesTable from '../../../Components/AdminComponents/TableComponents/RelativesTable';
+import SoftNotesTable from '../../../Components/AdminComponents/TableComponents/SoftNotesTable';
 import ProgressBar from '../../../components/ProgressBar/ProgressBar';
-import I693From from '../../../components/AdminComponents/Forms/I693From';
+import I693From from '../../../Components/AdminComponents/Forms/I693From';
 import AgencyLayout from '../../../Layout/AgencyLayout';
 
 

@@ -1,6 +1,6 @@
 import React from 'react'
-import GeneralDetails from '../../../components/AdminComponents/SettingsComponents/GeneralDetails'
-import GeneralIdUserName from '../../../components/AdminComponents/SettingsComponents/GeneralIdUserName'
+import GeneralDetails from '../../../Components/AdminComponents/SettingsComponents/GeneralDetails'
+import GeneralIdUserName from '../../../Components/AdminComponents/SettingsComponents/GeneralIdUserName'
 
 const General = () => {
     return (

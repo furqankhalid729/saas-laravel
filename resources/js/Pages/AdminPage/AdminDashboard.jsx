@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { subDays, subWeeks, subMonths, startOfWeek, endOfWeek } from "date-fns";
-import DashboardCards from '../../components/AdminComponents/DashboardCards'
-import ChartDoughnut from '../../components/AdminComponents/ChartDoughnut'
-import RecentUpdatesTable from '../../components/AdminComponents/TableComponents/RecentUpdatesTable'
+import DashboardCards from '../../Components/AdminComponents/DashboardCards'
+import ChartDoughnut from '../../Components/AdminComponents/ChartDoughnut'
+import RecentUpdatesTable from '../../Components/AdminComponents/TableComponents/RecentUpdatesTable'
 import AgencyLayout from "../../Layout/AgencyLayout";
 import DashboardTable from "../../Components/AdminComponents/TableComponents/AppointmentsTable/DashboardTable";
 

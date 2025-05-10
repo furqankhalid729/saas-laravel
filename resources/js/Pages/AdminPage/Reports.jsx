@@ -1,8 +1,8 @@
 import React from 'react'
-import SalesReportChart from '../../components/AdminComponents/Charts/SalesReportChart'
-import ReportChart from '../../components/AdminComponents/Charts/ReportChart'
-import CustomerChart from '../../components/AdminComponents/Charts/CustomerChart'
-import GrowthChart from '../../components/AdminComponents/Charts/GrowthChart'
+import SalesReportChart from '../../Components/AdminComponents/Charts/SalesReportChart'
+import ReportChart from '../../Components/AdminComponents/Charts/ReportChart'
+import CustomerChart from '../../Components/AdminComponents/Charts/CustomerChart'
+import GrowthChart from '../../Components/AdminComponents/Charts/GrowthChart'
 import AgencyLayout from '../../layout/AgencyLayout';
 
 const Reports = () => {

@@ -1,7 +1,7 @@
 import React from 'react'
 import { MdClose } from 'react-icons/md'
 import { Link } from '@inertiajs/react'
-import FormsCard from '../../../components/AdminComponents/Forms/FormsCard'
+import FormsCard from '../../../Components/AdminComponents/Forms/FormsCard'
 
 const RequestNewForm = () => {
     return (

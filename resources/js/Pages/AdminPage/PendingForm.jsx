@@ -1,5 +1,5 @@
 import React from 'react'
-import PendingFormTable from '../../components/AdminComponents/TableComponents/PendingFormTable';
+import PendingFormTable from '../../Components/AdminComponents/TableComponents/PendingFormTable';
 import AgencyLayout from '../../layout/AgencyLayout';
 
 const PendingForm = ({pending_forms}) => {

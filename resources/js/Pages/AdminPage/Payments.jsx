@@ -1,6 +1,6 @@
 import React from 'react'
-import PaymentCards from '../../components/AdminComponents/PaymentCards'
-import RecentTransactionTable from '../../components/AdminComponents/TableComponents/RecentTransactionTable';
+import PaymentCards from '../../Components/AdminComponents/PaymentCards'
+import RecentTransactionTable from '../../Components/AdminComponents/TableComponents/RecentTransactionTable';
 import AgencyLayout from '../../layout/AgencyLayout';
 
 const Payments = () => {

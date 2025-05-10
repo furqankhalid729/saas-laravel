@@ -1,7 +1,7 @@
 import React from 'react'
-import Profile from '../../../components/AdminComponents/Profile'
-import ChatMessages from '../../../components/AdminComponents/Chat/ChatMessages'
-import Messages from '../../../components/AdminComponents/Chat/Messages'
+import Profile from '../../../Components/AdminComponents/Profile'
+import ChatMessages from '../../../Components/AdminComponents/Chat/ChatMessages'
+import Messages from '../../../Components/AdminComponents/Chat/Messages'
 import AgencyLayout from '../../../Layout/AgencyLayout';
 
 const Chat = () => {

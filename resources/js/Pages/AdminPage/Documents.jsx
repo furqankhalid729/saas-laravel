@@ -1,5 +1,5 @@
 import React from 'react'
-import DocumentsTable from '../../components/AdminComponents/TableComponents/DocumentsTable'
+import DocumentsTable from '../../Components/AdminComponents/TableComponents/DocumentsTable'
 import AgencyLayout from '../../layout/AgencyLayout';
 
 const Documents = () => {

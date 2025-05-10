@@ -1,6 +1,6 @@
 import React from 'react'
 import { FiPlusCircle } from "react-icons/fi";
-import FormsCard from "../../../components/AdminComponents/Forms/FormsCard"
+import FormsCard from "../../../Components/AdminComponents/Forms/FormsCard"
 import { Link } from '@inertiajs/react';
 import AgencyLayout from '../../../layout/AgencyLayout';
 
