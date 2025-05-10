@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import ClinicLayout from "../../Layout/ClinicLayout";
 import { FiPlusCircle } from "react-icons/fi";
-import FormsCard from '../../components/ClinicComponents/Forms/FormsCard';
+import FormsCard from '../../../components/ClinicComponents/Forms/FormsCard';
 import AddNewForm from './FormsTabs/AddNewForm';
 import { Link } from '@inertiajs/react';
 

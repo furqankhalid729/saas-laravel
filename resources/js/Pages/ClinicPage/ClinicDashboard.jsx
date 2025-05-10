@@ -3,10 +3,10 @@ import ClinicLayout from "../../Layout/ClinicLayout";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { subDays, subWeeks, subMonths, startOfWeek, endOfWeek } from "date-fns";
-import ClinicDashboardCard from '../../components/ClinicComponents/ClinicDashboardCard'
-import LineChart from '../../components/ClinicComponents/LineChart'
-import BarChart from '../../components/ClinicComponents/BarChart'
-import DashboardTable from '../../components/ClinicComponents/TablesComponents/DashboardTable'
+import ClinicDashboardCard from '../../../components/ClinicComponents/ClinicDashboardCard'
+import LineChart from '../../../components/ClinicComponents/LineChart'
+import BarChart from '../../../components/ClinicComponents/BarChart'
+import DashboardTable from '../../../components/ClinicComponents/TablesComponents/DashboardTable'
 
 const ClinicDashboard = () => {
 

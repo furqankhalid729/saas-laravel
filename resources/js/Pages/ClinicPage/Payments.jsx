@@ -1,11 +1,11 @@
 import React from 'react'
 import ClinicLayout from "../../Layout/ClinicLayout";
-import PaymentCards from '../../components/ClinicComponents/PaymentCards'
-import RecentTransactionTable from '../../components/ClinicComponents/TablesComponents/RecentTransactionTable'
-import UpcomingTransaction from '../../components/ClinicComponents/TablesComponents/UpcomingTransaction'
-import ReportChart from '../../components/ClinicComponents/Charts/ReportChart'
-import CustomerChart from '../../components/ClinicComponents/Charts/CustomerChart'
-import GrowthChart from '../../components/ClinicComponents/Charts/GrowthChart'
+import PaymentCards from '../../../components/ClinicComponents/PaymentCards'
+import RecentTransactionTable from '../../../components/ClinicComponents/TablesComponents/RecentTransactionTable'
+import UpcomingTransaction from '../../../components/ClinicComponents/TablesComponents/UpcomingTransaction'
+import ReportChart from '../../../components/ClinicComponents/Charts/ReportChart'
+import CustomerChart from '../../../components/ClinicComponents/Charts/CustomerChart'
+import GrowthChart from '../../../components/ClinicComponents/Charts/GrowthChart'
 
 const Payments = () => {
     return (
