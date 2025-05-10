@@ -1,6 +1,6 @@
 import React from 'react'
 import AppointmentsTable from '../../Components/AdminComponents/TableComponents/AppointmentsTable/AppointmentsTable'
-import AgencyLayout from '../../Layout/AgencyLayout';
+import AgencyLayout from '../Layout/AgencyLayout';
 
 const Appointments = ({appointments}) => {
   return (

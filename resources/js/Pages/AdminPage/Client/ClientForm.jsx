@@ -14,7 +14,7 @@ import RelativesTable from '../../../Components/AdminComponents/TableComponents/
 import SoftNotesTable from '../../../Components/AdminComponents/TableComponents/SoftNotesTable';
 import ProgressBar from '../../../components/ProgressBar/ProgressBar';
 import I693From from '../../../Components/AdminComponents/Forms/I693From';
-import AgencyLayout from '../../../Layout/AgencyLayout';
+import AgencyLayout from '../../Layout/AgencyLayout';
 
 
 

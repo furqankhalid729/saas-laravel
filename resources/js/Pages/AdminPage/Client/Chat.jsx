@@ -2,7 +2,7 @@ import React from 'react'
 import Profile from '../../../Components/AdminComponents/Profile'
 import ChatMessages from '../../../Components/AdminComponents/Chat/ChatMessages'
 import Messages from '../../../Components/AdminComponents/Chat/Messages'
-import AgencyLayout from '../../../Layout/AgencyLayout';
+import AgencyLayout from '../../Layout/AgencyLayout';
 
 const Chat = () => {
     return (

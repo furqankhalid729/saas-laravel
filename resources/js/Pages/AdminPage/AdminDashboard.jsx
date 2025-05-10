@@ -5,7 +5,7 @@ import { subDays, subWeeks, subMonths, startOfWeek, endOfWeek } from "date-fns";
 import DashboardCards from '../../Components/AdminComponents/DashboardCards'
 import ChartDoughnut from '../../Components/AdminComponents/ChartDoughnut'
 import RecentUpdatesTable from '../../Components/AdminComponents/TableComponents/RecentUpdatesTable'
-import AgencyLayout from "../../Layout/AgencyLayout";
+import AgencyLayout from "../Layout/AgencyLayout";
 import DashboardTable from "../../Components/AdminComponents/TableComponents/AppointmentsTable/DashboardTable";
 
 const AdminDashboard = ({agencyData}) => {
