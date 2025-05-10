@@ -1,6 +1,6 @@
 import React from 'react'
 import UserLayout from "../../Layout/UserLayout";
-import AddMemberForm from '../../components/UserComponents/UserForm.jsx/AddMemberForm'
+import AddMemberForm from '../../Components/UserComponents/UserForm.jsx/AddMemberForm'
 
 const AddMembers = () => {
   return (
