@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import UserLayout from "../../../Layout/UserLayout"
-import AppointmentPayment from '../../Components/UserComponents/AppointmentPayment';
-import InvoiceDetails from '../../Components/UserComponents/InvoiceDetails';
-import PaymentMethod from '../../Components/UserComponents/PaymentMethod';
+import AppointmentPayment from '../../../Components/UserComponents/AppointmentPayment';
+import InvoiceDetails from '../../../Components/UserComponents/InvoiceDetails';
+import PaymentMethod from '../../../Components/UserComponents/PaymentMethod';
 import { FaAngleRight } from "react-icons/fa6";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 
