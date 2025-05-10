@@ -1,9 +1,9 @@
 import React from 'react'
 import ClinicLayout from "../../../Layout/ClinicLayout";
-import ClientProfile from '../../Components/ClinicComponents/ClientProfile'
-import ClientCards from '../../Components/ClinicComponents/ClientCards'
-import ClientPaymentTable from '../../Components/ClinicComponents/TablesComponents/ClientPaymentTable'
-import ClientActivityTable from '../../Components/ClinicComponents/TablesComponents/ClientActivityTable'
+import ClientProfile from '../../../Components/ClinicComponents/ClientProfile'
+import ClientCards from '../../../Components/ClinicComponents/ClientCards'
+import ClientPaymentTable from '../../../Components/ClinicComponents/TablesComponents/ClientPaymentTable'
+import ClientActivityTable from '../../../Components/ClinicComponents/TablesComponents/ClientActivityTable'
 
 const ClientsView = () => {
     return (
