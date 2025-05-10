@@ -1,5 +1,5 @@
 import React from 'react'
-import Login from '../../Components/ClinicComponents/Login'
+import Login from '../../../Components/ClinicComponents/Login'
 
 const LoginScreen = () => {
   return (
