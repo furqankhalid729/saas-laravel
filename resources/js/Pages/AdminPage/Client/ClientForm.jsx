@@ -12,7 +12,7 @@ import TimeLine from '../../../Components/AdminComponents/TimeLine';
 import PaymentTable from '../../../Components/AdminComponents/TableComponents/PaymentTable';
 import RelativesTable from '../../../Components/AdminComponents/TableComponents/RelativesTable';
 import SoftNotesTable from '../../../Components/AdminComponents/TableComponents/SoftNotesTable';
-import ProgressBar from '../../../components/ProgressBar/ProgressBar';
+import ProgressBar from '../../../Components/ProgressBar/ProgressBar';
 import I693From from '../../../Components/AdminComponents/Forms/I693From';
 import AgencyLayout from '../../../Layout/AgencyLayout';
 
