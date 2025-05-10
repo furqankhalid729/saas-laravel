@@ -1,5 +1,5 @@
 import React from 'react'
-import ChoosePlanComp from '../../components/AdminComponents/ChoosePlanComp'
+import ChoosePlanComp from '../../Components/AdminComponents/ChoosePlanComp'
 
 const ChoosePlan = () => {
     return (
