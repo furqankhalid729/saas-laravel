@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import PaymentMethod from '../../components/UserComponents/PaymentMethod';
-import InvoiceDetails from '../../components/UserComponents/InvoiceDetails';
+import PaymentMethod from '../../Components/UserComponents/PaymentMethod';
+import InvoiceDetails from '../../Components/UserComponents/InvoiceDetails';
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 
 const InvoiceViewDetail = () => {

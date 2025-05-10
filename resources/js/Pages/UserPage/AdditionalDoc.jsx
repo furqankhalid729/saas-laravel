@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom'
 import { FaPlus } from "react-icons/fa6";
 import { CgCalendarDates } from "react-icons/cg";
 import { FaAngleDown } from "react-icons/fa6";
-import AdditionalDocTable from '../../components/UserComponents/TablesComponents/AdditionalDocTable'
+import AdditionalDocTable from '../../Components/UserComponents/TablesComponents/AdditionalDocTable'
 
 const AdditionalDoc = () => {
   return (

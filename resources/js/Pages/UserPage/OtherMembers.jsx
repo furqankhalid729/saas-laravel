@@ -1,6 +1,6 @@
 import React from 'react'
 import UserLayout from "../../Layout/UserLayout";
-import MembersTable from '../../components/UserComponents/TablesComponents/MembersTables/MembersTable'
+import MembersTable from '../../Components/UserComponents/TablesComponents/MembersTables/MembersTable'
 
 const OtherMembers = () => {
   return (

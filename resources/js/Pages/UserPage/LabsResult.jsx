@@ -1,7 +1,7 @@
 import React from 'react'
 import UserLayout from "../../Layout/UserLayout";
-import LabsResultTable from '../../components/UserComponents/TablesComponents/LabsResultTable';
-import VaccineTable from '../../components/UserComponents/TablesComponents/VaccineTable';
+import LabsResultTable from '../../Components/UserComponents/TablesComponents/LabsResultTable';
+import VaccineTable from '../../Components/UserComponents/TablesComponents/VaccineTable';
 
 const LabsResult = () => {
     return (

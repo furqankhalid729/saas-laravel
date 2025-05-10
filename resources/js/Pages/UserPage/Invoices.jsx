@@ -1,6 +1,6 @@
 import React from 'react'
 import UserLayout from "../../Layout/UserLayout";
-import InvoicesTable from '../../components/UserComponents/TablesComponents/InvoicesTable'
+import InvoicesTable from '../../Components/UserComponents/TablesComponents/InvoicesTable'
 
 const Invoices = () => {
   return (
