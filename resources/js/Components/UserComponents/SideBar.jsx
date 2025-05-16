@@ -7,13 +7,13 @@ import { FaCalendarAlt, FaFileAlt, FaClipboardList } from 'react-icons/fa';
 
 const UserSidebarItems = [
     { to: "/user/dashboard", label: "Dashboard", icon: <TbLayoutDashboard /> },
-    { to: "/user/forms", label: "Forms", icon: <FaFileAlt /> },
+    { to: route('user.forms.requested'), label: "Forms", icon: <FaFileAlt /> },
     // { to: "/user/additional-doc", label: "Additional Doc", icon: <FaFolder /> },
     { to: "/user/labs-result", label: "Labs Result", icon: <FaClipboardList /> },
     { to: "/user/family-members", label: "Family Members", icon: <FaUsers /> },
     { to: "/user/invoices", label: "Invoices", icon: <FaFileInvoice /> },
     { to: "/user/add-members", label: "Add Members", icon: <FaUserPlus /> },
-    { to: "/user/appointment", label: "Appointment", icon: <FaCalendarAlt /> },
+    { to: route('user.appointments.show'), label: "Appointment", icon: <FaCalendarAlt /> },
 ];
 
 const SideBar = () => {

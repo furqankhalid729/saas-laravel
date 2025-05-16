@@ -13,6 +13,8 @@ enum UserInertiaViews: string
     case USER_UPLOAD_PHOTO = 'UserPage/UserScreen/UploadPhotoScreen';
     case USER_DASHBOARD = 'UserPage/UserDashboard';
     case USER_INTAKE_FORM = 'UserPage/Forms/UserIntakeForm';
+    case SHOW_FORM = 'UserPage/Forms/ShowForm';
+    case ADD_FORM_DATA = 'UserPage/Forms/AddFormData';
     case USER_MEDICAL_INFO_FORM = 'UserPage/Forms/MedicalInfoForm';
     case USER_REQUESTED_FORMS = 'UserPage/RequestedForm';
     case USER_EDIT_REQUESTED_FORM = 'UserPage/EditForm';

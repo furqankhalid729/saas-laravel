@@ -9,6 +9,8 @@ use App\Enums\UserInertiaViews;
 use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
 use App\Models\PatientIntake;
+use App\Models\RequestedForm;
+use App\Models\AgencyForm;
 
 class UserFormController extends Controller
 {
@@ -19,7 +21,6 @@ class UserFormController extends Controller
     public function storeIntakeFormDetails(Request $request)
     {
         $user = auth()->user();
-
         $request->merge([
             'appointment_type' => 'Individual',
             'patient_status' => 'new',
@@ -69,13 +70,82 @@ class UserFormController extends Controller
         return Inertia::render(UserInertiaViews::USER_MEDICAL_INFO_FORM->value);
     }
 
+    public function showRequestedForm($id)
+    {
+        $currentAgencyId = session('current_agency_id');
+        $form = AgencyForm::findOrFail($id);
+        $user_data = RequestedForm::where('agency_form_id', $id)
+            ->where('user_id', auth()->user()->id)
+            ->where('agency_id', $currentAgencyId)
+            ->first();
+        return Inertia::render(UserInertiaViews::SHOW_FORM->value, [
+            'form' => [
+                'id' => $form->id,
+                'form_name' => $form->form_name,
+                'form_data' => json_decode($form->form_data),
+                'user_data' => $user_data
+            ],
+        ]);
+    }
+
+    public function getFormDetails($id)
+    {
+        $form = AgencyForm::findOrFail($id);
+        return Inertia::render(UserInertiaViews::ADD_FORM_DATA->value, [
+            'form' => [
+                'id' => $form->id,
+                'form_name' => $form->form_name,
+                'form_data' => json_decode($form->form_data),
+            ],
+        ]);
+    }
+
     public function showRequestedForms()
     {
-        return Inertia::render(UserInertiaViews::USER_REQUESTED_FORMS->value);
+        $agency_id = session('current_agency_id');
+        $requestedForms = RequestedForm::where('agency_id', $agency_id)
+            ->where('user_id', auth()->user()->id)
+            ->orderBy('requested_at', 'desc')
+            ->with(['agencyForm'])
+            ->get();
+        return Inertia::render(UserInertiaViews::USER_REQUESTED_FORMS->value, [
+            'requestedForms' => $requestedForms
+        ]);
     }
 
     public function editRequestedForm()
     {
         return Inertia::render(UserInertiaViews::USER_EDIT_REQUESTED_FORM->value);
+    }
+
+    public function storeSubmittedForm(Request $request)
+    {
+        $currentAgencyId = session('current_agency_id');
+        $userId = auth()->user()->id;
+        if (!$currentAgencyId || !$userId) {
+            return response()->json(['error' => 'No agency/User found in session'], 400);
+        }
+        $request->validate([
+            'form_id' => 'required|integer',
+            'data' => 'required|array',
+        ]);
+
+        $submission = RequestedForm::updateOrCreate(
+            [
+                'user_id' => $userId,
+                'agency_id' => $currentAgencyId,
+                'agency_form_id' => $request->form_id,
+            ],
+            [
+                'submitted_data' => $request->data,
+                'status' => 'completed',
+                'completed_at' => now(),
+            ]
+        );
+
+        return response()->json([
+            'message' => 'Form data saved successfully',
+            'submission' => $submission,
+        ]);
     }
 }

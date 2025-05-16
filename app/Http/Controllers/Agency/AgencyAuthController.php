@@ -110,7 +110,7 @@ class AgencyAuthController extends Controller
 
         // Redirect based on role
         return redirect()->route(
-            $agencyUser->role === 'admin' ? 'agency.dashboard' : 'agency.user.dashboard'
+            $agencyUser->role === 'admin' ? 'agency.dashboard' : 'user.dashboard'
         );
     }
 

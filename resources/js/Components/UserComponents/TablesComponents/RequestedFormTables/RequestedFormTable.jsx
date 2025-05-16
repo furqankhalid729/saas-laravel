@@ -1,19 +1,9 @@
-import React from 'react'
+import React from 'react';
+import { Link } from '@inertiajs/react'
 import { FaEdit } from "react-icons/fa";
 import { IoEyeOutline } from "react-icons/io5";
 
-
-let ReqFormTable = [
-    { Id: "01", Form: "Chest X-ray", Date: "November 27, 2024", Status: "Need attestation", textColor: "text-[#EA4232]" },
-    { Id: "02", Form: "Chest X-ray", Date: "November 27, 2024", Status: "Need attestation", textColor: "text-[#EA4232]" },
-    { Id: "03", Form: "Chest X-ray", Date: "November 27, 2024", Status: "submited", textColor: "text-[#004D11]" },
-    { Id: "04", Form: "Chest X-ray", Date: "November 27, 2024", Status: "submited", textColor: "text-[#004D11]" },
-    { Id: "05", Form: "Chest X-ray", Date: "November 27, 2024", Status: "Need attestation", textColor: "text-[#EA4232]" },
-    { Id: "06", Form: "Chest X-ray", Date: "November 27, 2024", Status: "submited", textColor: "text-[#004D11]" },
-]
-
-const RequestedFormTable = () => {
-
+const RequestedFormTable = ({ requestedForms }) => {
     return (
         <div>
             <div className='overflow-x-scroll hide-scrollbar w-full'>
@@ -21,7 +11,7 @@ const RequestedFormTable = () => {
                     <thead className='w-full h-[60px] border-b-[0.7px] border-[#808080] flex items-center'>
                         <tr className='w-full h-full flex items-center'>
                             <td>
-                                <h6 className='text-[36px] font-[600] leading-[43px]'>Requested Form</h6>
+                                <h6 className='text-[36px] font-[600] leading-[43px]'>Requested Forms</h6>
                             </td>
                         </tr>
                     </thead>
@@ -33,14 +23,18 @@ const RequestedFormTable = () => {
                             <td className='text-nowrap px-3 w-[30%] text-center'>Status</td>
                             <td className='text-nowrap px-3 w-[15%] text-center'>Action</td>
                         </tr>
-                        {ReqFormTable.map((data) => (
+                        {requestedForms.map((data) => (
                             <tr key={data.Id} className='w-full border-b-[0.7px] border-[#808080] flex justify-between items-center h-[40px] text-[#808080] font-[400] text-[12px] leading-[14px]'>
-                                <td className='text-nowrap px-3 w-[20%]'>{data.Form}</td>
-                                <td className='text-nowrap px-3 w-[30%] text-center'>{data.Date}</td>
-                                <td className={`${data.textColor} text-nowrap px-3 w-[30%] text-center`}>{data.Status}</td>
+                                <td className='text-nowrap px-3 w-[20%]'>{data.agency_form.form_name}</td>
+                                <td className='text-nowrap px-3 w-[30%] text-center'>{new Date(data.created_at).toDateString()}</td>
+                                <td className={`${data.status == "pending" ? 'text-red-600' : 'text-green-600'} text-nowrap px-3 w-[30%] text-center`}>{data.status}</td>
                                 <td className='text-nowrap px-3 w-[15%] flex items-center justify-center gap-2'>
-                                    <FaEdit className='text-[#FF2C2C]' />
-                                    <IoEyeOutline className='text-black border-[0.7px] rounded-sm' />
+                                    <Link href={route('user.forms.add.info', data.id)}>
+                                        <FaEdit className='text-[#FF2C2C]' />
+                                    </Link>
+                                    <Link href={route('user.forms.requested.show', data.id)}>
+                                        <IoEyeOutline className='text-black border-[0.5px] rounded-sm' />
+                                    </Link>
                                 </td>
                             </tr>
                         ))}

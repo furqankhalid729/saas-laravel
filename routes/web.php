@@ -120,16 +120,18 @@ Route::prefix('user')->name('user.')->middleware(['auth:web','check.user.intake'
     Route::get('/dashboard', [UserDashboardController::class, 'showDashboard'])->name('dashboard');
     // Forms
     Route::prefix('forms')->name('forms.')->controller(UserFormController::class)->group(function () {
-        Route::get('/patient-intake', [UserFormController::class, 'showIntakeForm'])->name('patient-intake.create');
-        Route::post('/patient-intake', [UserFormController::class, 'storeIntakeFormDetails'])->name('patient-intake.store');
+        Route::get('/patient-intake', 'showIntakeForm')->name('patient-intake.create');
+        Route::post('/patient-intake', 'storeIntakeFormDetails')->name('patient-intake.store');
         Route::get('/medical-info-form', 'showMedicalInfoForm')->name('medical_info_form');
         Route::get('/requested', 'showRequestedForms')->name('requested');
+        Route::get('/requested/add/{id}', 'getFormDetails')->name('add.info');
+        Route::get('/requested/{id}', 'showRequestedForm')->name('requested.show');
         Route::get('/requested/edit', 'editRequestedForm')->name('edit_requested');
     });
 
     // Appointments
-    Route::prefix('appointment')->name('appointments_')->controller(UserAppointmentController::class)->group(function () {
-        Route::get('/', 'showAppointments')->name('show');
+    Route::prefix('appointment')->name('appointments.')->controller(UserAppointmentController::class)->group(function () {
+        Route::get('/', 'index')->name('show');
         Route::get('/book-new', 'bookNewAppointment')->name('book_new');
     });
 

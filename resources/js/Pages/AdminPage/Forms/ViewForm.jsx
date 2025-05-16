@@ -3,6 +3,7 @@ import 'react-form-builder2/dist/app.css';
 import AgencyLayout from '../../../Layout/AgencyLayout';
 
 const ViewForm = ({ form }) => {
+    console.log(form)
     return (
         <div className="p-4 bg-white rounded shadow">
             <link
