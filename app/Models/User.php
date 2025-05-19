@@ -44,4 +44,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(AgencyUser::class);
     }
+
+    public function userMembers()
+    {
+        return $this->hasMany(UserMember::class, 'user_id');
+    }
 }

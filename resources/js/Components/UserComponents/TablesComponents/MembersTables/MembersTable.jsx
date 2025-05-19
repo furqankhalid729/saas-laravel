@@ -1,13 +1,5 @@
 import React from 'react'
-
-let OtherMemTable = [
-    { ID: "01", Name: "Adam smith", Email: "SmithAdam@gmail.com", PhoneNo: "+1-923-466543", Relation: "Brother" },
-    { ID: "02", Name: "warner smith", Email: "SmithAdam@gmail.com", PhoneNo: "+1-923-466543", Relation: "Wife" },
-    { ID: "03", Name: "Adam smith", Email: "SmithAdam@gmail.com", PhoneNo: "+1-923-466543", Relation: "Son" },
-    { ID: "04", Name: "Adam smith", Email: "SmithAdam@gmail.com", PhoneNo: "+1-923-466543", Relation: "Brother" },
-    { ID: "05", Name: "Adam smith", Email: "SmithAdam@gmail.com", PhoneNo: "+1-923-466543", Relation: "Sister" },
-]
-const MembersTable = () => {
+const MembersTable = ({members}) => {
 
     return (
         <div>
@@ -23,13 +15,13 @@ const MembersTable = () => {
                             <td className='text-nowrap px-2 w-[13%] text-center'>Relation</td>
                             <td className='text-nowrap px-2 w-[12%] text-center'>Action</td>
                         </tr>
-                        {OtherMemTable.map((data) => (
+                        {members.map((data) => (
                             <tr key={data.ID} className='w-full border-b-[0.5px] border-[#808080] flex justify-between items-center h-[40px] text-[#808080] font-[400] text-[12px] leading-[14px]'>
-                                <td className='text-nowrap px-2 w-[5%]'>{data.ID}</td>
-                                <td className='text-nowrap px-2 w-[20%] '>{data.Name}</td>
-                                <td className='text-nowrap px-2 w-[30%] '>{data.Email}</td>
-                                <td className='text-nowrap px-2 w-[20%] text-center'>{data.PhoneNo}</td>
-                                <td className='text-nowrap px-2 w-[13%] text-center'>{data.Relation}</td>
+                                <td className='text-nowrap px-2 w-[5%]'>{data.member.id}</td>
+                                <td className='text-nowrap px-2 w-[20%] '>{data.member.name}</td>
+                                <td className='text-nowrap px-2 w-[30%] '>{data.member.email}</td>
+                                <td className='text-nowrap px-2 w-[20%] text-center'>{data.member.phone_number}</td>
+                                <td className='text-nowrap px-2 w-[13%] text-center'>{data.member.relation}</td>
                                 <td className='text-nowrap px-2 w-[12%] text-center underline text-black'>View Profile</td>
                             </tr>
                         ))}

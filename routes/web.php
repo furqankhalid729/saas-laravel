@@ -139,9 +139,10 @@ Route::prefix('user')->name('user.')->middleware(['auth:web','check.user.intake'
     Route::get('/labs-result', [UserLabResultController::class, 'showLabResults'])->name('labs_results');
 
     // Family Members
-    Route::prefix('family-members')->name('family_members_')->controller(UserMemberController::class)->group(function () {
+    Route::prefix('family-members')->name('family-members.')->controller(UserMemberController::class)->group(function () {
         Route::get('/', 'showFamilyMembers')->name('show');
         Route::get('/add', 'addFamilyMember')->name('add');
+        Route::post('/add', 'storeFamilyMember')->name('store');
     });
 
     // Invoices

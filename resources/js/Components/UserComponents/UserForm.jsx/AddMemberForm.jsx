@@ -2,6 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link } from '@inertiajs/react';
+import { router } from '@inertiajs/react';
 
 const AddMemberForm = () => {
     // Define the validation schema with Yup
@@ -13,7 +14,7 @@ const AddMemberForm = () => {
         age: Yup.number().min(1, 'Invalid age').required('Age is required'),
         gender: Yup.string().required('Gender is required'),
         address: Yup.string().required('Address is required'),
-        terms: Yup.boolean().oneOf([true], 'You must accept the terms and conditions')
+        password: Yup.string().required('password is required'),
     });
 
     // Initial values for the form fields
@@ -25,12 +26,26 @@ const AddMemberForm = () => {
         age: '',
         gender: '',
         address: '',
-        terms: false
+        password: ''
     };
 
     // Function to handle form submission
-    const onSubmit = (values) => {
+    const onSubmit = (values, { setSubmitting, setErrors }) => {
         console.log('Form Data', values);
+        router.post(route('user.family-members.store'), values, {
+            onSuccess: () => {
+                console.log('Form submitted successfully');
+                // Optional: Show success message
+                alert('Member added successfully!');
+            },
+            onError: (errors) => {
+                console.log('Submission errors:', errors);
+                setErrors(errors);
+            },
+            onFinish: () => {
+                setSubmitting(false);
+            }
+        });
     };
 
     return (
@@ -120,7 +135,7 @@ const AddMemberForm = () => {
                         {/* address */}
                         <div>
                             <label htmlFor="address" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Address
-                            <span className='text-[#FF0000] text-[14px] leading-[16px] font-[400]'> *</span>
+                                <span className='text-[#FF0000] text-[14px] leading-[16px] font-[400]'> *</span>
                             </label>
                             <Field
                                 type="text"
@@ -131,14 +146,27 @@ const AddMemberForm = () => {
                             />
                             <ErrorMessage name="address" component="div" className="text-red-600 text-sm" />
                         </div>
+                        <div>
+                            <label htmlFor="password" className="block text-[14px] font-[400] leading-[17px] text-[#808080]">Password
+                                <span className='text-[#FF0000] text-[14px] leading-[16px] font-[400]'> *</span>
+                            </label>
+                            <Field
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder='Enter password'
+                                className="mt-1 block w-full px-3 py-3 border border-gray-300 rounded-md shadow-sm focus:ring-black focus:border-black"
+                            />
+                            <ErrorMessage name="password" component="div" className="text-red-600 text-sm" />
+                        </div>
                         {/* Add Member Button*/}
-                        <Link href="/user/dashboard" className="self-end">
-                            <button
-                                type="submit"
-                                className="w-[150px] bg-black text-white py-2 rounded-md hover:bg-gray-800 transition-all">
-                                Add member
-                            </button>
-                        </Link>
+
+                        <button
+                            type="submit"
+                            className="w-[150px] bg-black text-white py-2 rounded-md hover:bg-gray-800 transition-all">
+                            Add member
+                        </button>
+
                     </Form>
                 )}
             </Formik>

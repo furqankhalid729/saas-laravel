@@ -1,5 +1,4 @@
 import React from 'react';
-// import { useLocation } from 'react-router-dom';
 import { Link } from '@inertiajs/react';
 import { TbLayoutDashboard } from "react-icons/tb";
 import { FaAngleRight, FaFileInvoice, FaFolder, FaUserPlus, FaUsers } from "react-icons/fa6";
@@ -12,7 +11,7 @@ const UserSidebarItems = [
     { to: "/user/labs-result", label: "Labs Result", icon: <FaClipboardList /> },
     { to: "/user/family-members", label: "Family Members", icon: <FaUsers /> },
     { to: "/user/invoices", label: "Invoices", icon: <FaFileInvoice /> },
-    { to: "/user/add-members", label: "Add Members", icon: <FaUserPlus /> },
+    { to: route('user.family-members.add'), label: "Add Member", icon: <FaUserPlus /> }, 
     { to: route('user.appointments.show'), label: "Appointment", icon: <FaCalendarAlt /> },
 ];
 
