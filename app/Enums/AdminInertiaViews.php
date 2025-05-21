@@ -13,7 +13,7 @@ enum AdminInertiaViews: string
     case ADMIN_FORMS = 'ClinicPage/Forms';
     case ADMIN_ADD_FORM_FIELD = 'ClinicPage/FormsTabs/AddNewField';
     case ADMIN_PAYMENTS = 'ClinicPage/Payments';
-
+    
 
 
 }

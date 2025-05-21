@@ -27,4 +27,8 @@ enum AgencyInertiaViews: string
     case Agency_Plan_Selection = 'AdminPage/ChoosePlan';
     case Agency_Report_List = 'AdminPage/Reports';
     case Agency_Settings_Page = 'AdminPage/Settings';
+
+    case ADMIN_INVOICES = 'AdminPage/Invocies/Index';
+    case ADMIN_INVOICES_CREATE = 'AdminPage/Invocies/Create';
+    case ADMIN_INVOICES_EDIT = 'AdminPage/Invocies/Edit';
 }

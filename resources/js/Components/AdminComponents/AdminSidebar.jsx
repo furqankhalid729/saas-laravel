@@ -17,6 +17,7 @@ const AdminSidebarItems = [
     { to: route('agency.clients.list'), label: "Patients", icon: <IoPeopleOutline /> },
     { to: route('agency.appointment.index'), label: "Appointment", icon: <FaCalendarAlt /> },
     { to: route('agency.chat'), label: "Chat", icon: <MdOutlineChat /> },
+    { to: route("agency.invoices.index"), label: "Invoices", icon: <MdOutlinePayments /> },
     { to: route("agency.payments"), label: "Payments", icon: <MdOutlinePayments /> },
     { to: route("agency.reports"), label: "Reports", icon: <TbReportSearch /> },
     { to: route("agency.employee.index"), label: "Employee", icon: <GoPeople /> },

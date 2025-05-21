@@ -25,6 +25,7 @@ use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdminClientController;
 use App\Http\Controllers\Admin\AdminPaymentController;
+use App\Http\Controllers\Agency\InvoiceController;
 
 use App\Http\Controllers\Admin\AdminFormController;
 
@@ -112,6 +113,7 @@ Route::prefix('agency')->name('agency.')->middleware(['auth:web', 'check.subscri
     Route::get('/settings', [AgencySettingController::class, 'viewSettings'])->name('settings');
     // Labs Result
     Route::get('/labs-result', [AgencyLabResultController::class, 'viewLabResults'])->name('labs.result');
+    Route::resource('invoices', InvoiceController::class)->names('invoices');
 });
 
 
