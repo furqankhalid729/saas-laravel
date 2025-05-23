@@ -1,7 +1,7 @@
 import React, {useMemo} from 'react';
 import { useForm } from '@inertiajs/react';
 
-export default function InvoiceForm({ customers, invoice = null }) {
+export default function InvoiceForm({ customers, invoice = null, user_id }) {
     const { data, setData, post, put, processing, errors } = useForm({
         invoice_number: invoice?.invoice_number || '',
         account_number: invoice?.account_number || '',
@@ -9,7 +9,7 @@ export default function InvoiceForm({ customers, invoice = null }) {
         due_date: invoice?.due_date || '',
         status: invoice?.status || 'unpaid',
         total: invoice?.total || 0,
-        user_id: invoice?.user_id || '',
+        user_id: invoice?.user_id || user_id || '',
         items: invoice?.items || [{ description: '', price: 0, quantity: 1 }],
     });
 

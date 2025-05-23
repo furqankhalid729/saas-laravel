@@ -8,7 +8,7 @@ class Invoice extends Model
 {
     protected $fillable = [
         'invoice_number', 'account_number', 'issued_date',
-        'due_date', 'status', 'total', 'user_id'
+        'due_date', 'status', 'total', 'user_id','agency_id'
     ];
 
     public function items()

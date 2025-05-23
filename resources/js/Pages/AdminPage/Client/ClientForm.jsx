@@ -16,8 +16,6 @@ import ProgressBar from '../../../Components/ProgressBar/ProgressBar';
 import I693From from '../../../Components/AdminComponents/Forms/I693From';
 import AgencyLayout from '../../../Layout/AgencyLayout';
 
-
-
 let PagesNumber = [
     { Number: 1, PageName: "Profile" },
     { Number: 2, PageName: "Appointment" },
@@ -30,8 +28,8 @@ let PagesNumber = [
     { Number: 9, PageName: "Relatives" },
 ]
 
-const ClientForm = ({agencyUser, agencyFroms,requestedForms, appointments, timeLine}) => {
-    console.log(agencyUser);
+const ClientForm = ({agencyUser, agencyFroms,requestedForms, appointments, timeLine, invoices, user_id}) => {
+    console.log(invoices);
     const [currentPage, setCurrentPage] = useState(1);
 
     return (
@@ -110,7 +108,10 @@ const ClientForm = ({agencyUser, agencyFroms,requestedForms, appointments, timeL
                         )}
                         {currentPage === 8 && (
                             <div>
-                                <PaymentTable />
+                                <PaymentTable 
+                                    invoices={invoices}
+                                    user_id={user_id}
+                                />
                             </div>
                         )}
                         {currentPage === 9 && (

@@ -20,12 +20,13 @@ class InvoiceController extends Controller
         ]);
     }
 
-    public function create()
+    public function create(Request $request)
     {
         $customers = User::all();
 
         return Inertia::render(AgencyInertiaViews::ADMIN_INVOICES_CREATE->value, [
-            'customers' => $customers
+            'customers' => $customers,
+            'user_id' => $request->query('user_id'), 
         ]);
     }
 
@@ -40,16 +41,19 @@ class InvoiceController extends Controller
             'user_id' => 'required|exists:users,id',
             'items' => 'required|array',
         ]);
-
-        $invoice = Invoice::create($request->only([
-            'invoice_number',
-            'account_number',
-            'issued_date',
-            'due_date',
-            'status',
-            'total',
-            'user_id'
-        ]));
+        $agencyId = session('active_agency_id');
+        $invoice = Invoice::create(array_merge(
+            $request->only([
+                'invoice_number',
+                'account_number',
+                'issued_date',
+                'due_date',
+                'status',
+                'total',
+                'user_id'
+            ]),
+            ['agency_id' => $agencyId]
+        ));
 
         foreach ($request->items as $item) {
             $invoice->items()->create([

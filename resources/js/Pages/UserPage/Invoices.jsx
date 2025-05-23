@@ -2,12 +2,15 @@ import React from 'react'
 import UserLayout from "../../Layout/UserLayout";
 import InvoicesTable from '../../Components/UserComponents/TablesComponents/InvoicesTable'
 
-const Invoices = () => {
+const Invoices = ({invoices}) => {
+  console.log(invoices);
   return (
     <div className='w-full gap-[20px]'>
       <div className='w-[93%] my-7 mx-auto'>
         <h6 className='text-[36px] mb-6 font-[600] leading-[44px]'>Invoices</h6>
-        <InvoicesTable />
+        <InvoicesTable
+          invoices={invoices}
+        />
       </div>
     </div>
   )

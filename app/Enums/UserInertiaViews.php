@@ -19,6 +19,7 @@ enum UserInertiaViews: string
     case USER_REQUESTED_FORMS = 'UserPage/RequestedForm';
     case USER_EDIT_REQUESTED_FORM = 'UserPage/EditForm';
     case USER_INVOICES = 'UserPage/Invoices';
+    case USER_INVOICE_DETAIL = 'UserPage/InvoiceDetails';
     case USER_LABS_RESULT = 'UserPage/LabsResult';
     case USER_FAMILY_MEMBERS = 'UserPage/OtherMembers';
     case USER_ADD_FAMILY_MEMBER = 'UserPage/AddMembers';

@@ -148,7 +148,8 @@ Route::prefix('user')->name('user.')->middleware(['auth:web','check.user.intake'
     });
 
     // Invoices
-    Route::get('/invoices', [UserInvoiceController::class, 'showInvoices'])->name('invoices');
+    Route::get('/invoices', [UserInvoiceController::class, 'index'])->name('invoices');
+    Route::get('/invoice/{id}', [UserInvoiceController::class, 'show'])->name('invoice.show');
 });
 
 

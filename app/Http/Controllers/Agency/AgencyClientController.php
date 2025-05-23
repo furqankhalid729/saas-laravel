@@ -13,6 +13,8 @@ use App\Models\RequestedForm;
 use App\Models\AgencyForm;
 use App\Models\Appointment;
 use App\Models\AgencyTimeLine;
+use App\Models\Invoice;
+use App\Models\InvoiceItem;
 
 class AgencyClientController extends Controller
 {
@@ -48,12 +50,19 @@ class AgencyClientController extends Controller
             ->with('user')
             ->get();
 
+        $invoices = Invoice::where('agency_id', $activeAgencyId)
+            ->where('user_id', $id)
+            ->with(['items'])
+            ->get();
+
         return Inertia::render(AgencyInertiaViews::AgencyClientDetailsPage->value, [
             'agencyUser' => $agencyUser,
             'agencyFroms' => $agencyFroms,
             'requestedForms' => $requestedForms,
             'appointments' => $appointments,
             'timeLine' => $timeLine,
+            'invoices' => $invoices,
+            'user_id' => $id,
         ]);
     }
 
